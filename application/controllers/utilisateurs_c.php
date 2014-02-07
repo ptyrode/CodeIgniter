@@ -31,10 +31,10 @@ class Utilisateurs_c extends CI_Controller {
                 $data['nom'] = $session_data['nom'];
                 $data['IDdroit'] = $session_data['IDdroit'];
                 if($data['IDdroit']==1)
-                    redirect('slider_c', 'refresh');
+                    redirect('admin/admin_c', 'refresh');
                     //$this->load->view('produits/admin/produits_v', $data);
                 else
-                    redirect('slider_c', 'refresh');
+                    redirect('client/client_c', 'refresh');
                     //$this->load->view('produits/client/produits_v', $data);
             }
             else

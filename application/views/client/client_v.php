@@ -38,9 +38,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <div class="navbar-form navbar-right">
-                CLIENT
-            <h2>Bonjour <?php echo $nom; ?></h2>
-            <a href="utilisateurs_c/deconnexion">Déconnexion</a>
+                <a type="button" class="btn btn-success" href="<?php echo site_url('utilisateurs_c/deconnexion') ?>">Déconnexion</a>
             </div>
         </div><!--/.navbar-collapse -->
     </div>

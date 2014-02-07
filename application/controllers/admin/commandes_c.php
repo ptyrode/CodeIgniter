@@ -19,7 +19,7 @@ class Commandes_c extends CI_Controller {
 
         if(date("N") < 3){
             $data = array(
-                'contenu' => "clients/nvl_commande_v",
+                'contenu' => "client/nvl_commande_v",
                 'users' => $this->commandes_m->get_dropdown_users(),
                 'lieu' => $this->commandes_m->get_dropdown_lieu(),
                 'semaine' => $this->commandes_m->get_dropdown_semaine(),
@@ -31,7 +31,7 @@ class Commandes_c extends CI_Controller {
                 //si belfort et si 20h au plus tard
                  if(($ville = "belfort") && (date("G")<= 20)){
                     $data = array(
-                        'contenu' => "clients/nvl_commande_v",
+                        'contenu' => "client/nvl_commande_v",
                         'utilisateur' =>$this->produits_m->getuser(),
                         'lieu' => $this->produits_m->getlieu(),
                         'semaine' => $this->produits_m->getsemaine()
@@ -40,19 +40,19 @@ class Commandes_c extends CI_Controller {
                     // si sochaux et 10h au plus tard
                     if(($ville = "sochaux") && (date("G")<= 10)){
                         $data = array(
-                            'contenu' => "clients/nvl_commande_v",
+                            'contenu' => "client/nvl_commande_v",
                             'utilisateur' =>$this->produits_m->getuser(),
                             'lieu' => $this->produits_m->getlieu(),
                             'semaine' => $this->produits_m->getsemaine()
 
                     );
                 }else{
-                    $data = array('contenu' => "clients/delai_depasse");
+                    $data = array('contenu' => "client/delai_depasse");
                 }
         }
 
         $data = array(
-            'contenu' => "clients/nvl_commande_v",
+            'contenu' => "client/nvl_commande_v",
             'users' => $this->commandes_m->get_dropdown_users(),
             'lieu' => $this->commandes_m->get_dropdown_lieu(),
             'semaine' => $this->commandes_m->get_dropdown_semaine(),

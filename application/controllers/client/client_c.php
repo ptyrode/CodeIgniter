@@ -4,15 +4,18 @@ class Client_c extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users_m');
+        $this->load->model('utilisateurs_m');
         //$this->user = ($this->sitemodel->is_logged()) ? $this->sitemodel->get_user($this->session->userdata('lastname')) : false;
     }
     public function index()
     {
-        if($this->session->userdata('droit')!=1){
-            redirect('user_c');
-        }
-        $donnees['titre']="Membre de l\'association";
-        $this->load->view('clients/client_index',$donnees);
+        /* if($this->session->userdata('droit')!=2){
+            redirect('utilisateurs_c');
+        } */
+        $donnees = array(
+            'contenu' => "client/client_v",
+            'titre' => "Membre de l\'association"
+        );
+        $this->load->view('template/client/content',$donnees);
     }
 }
