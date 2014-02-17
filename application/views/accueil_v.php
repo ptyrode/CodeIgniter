@@ -39,7 +39,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <?php $class = array('class' => 'navbar-form navbar-right');?>
-                <?php echo form_open('utilisateurs_c', $class); ?>
+                <?php echo form_open('utilisateurs_c/connexion', $class); ?>
                 <div class="form-group">
                     <input type="text" name="nom" id="nom" placeholder="Identifiant" class="form-control">
                 </div>
@@ -126,6 +126,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>dist/js/bootstrap.min.js"></script>
 </body>
 </html>

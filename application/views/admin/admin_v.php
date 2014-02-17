@@ -11,10 +11,11 @@
     <title>Jumbotron Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>dist/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/main.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo base_url(); ?>assets/css/jumbotron.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>dist/css/jumbotron.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Biau Potager Version beta</a>
         </div>
         <div class="navbar-collapse collapse">
             <div class="navbar-form navbar-right">
@@ -85,6 +86,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>dist/js/bootstrap.min.js"></script>
 </body>
 </html>

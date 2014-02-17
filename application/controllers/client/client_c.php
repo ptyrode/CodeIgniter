@@ -9,9 +9,9 @@ class Client_c extends CI_Controller {
     }
     public function index()
     {
-        /* if($this->session->userdata('droit')!=2){
+        if($this->session->userdata('IDdroit')!=2){
             redirect('utilisateurs_c');
-        } */
+        }
         $donnees = array(
             'contenu' => "client/client_v",
             'titre' => "Membre de l\'association"

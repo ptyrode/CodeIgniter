@@ -1,90 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-session_start(); //we need to call PHP's session object to access it through CI
 
 class Utilisateurs_c extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('utilisateurs_m','',TRUE);
+        $this->load->model('utilisateurs_m');
     }
 
-    function index()
+    public function index()
     {
-        //This method will have the credentials validation
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('nom', 'nom', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('passkey', 'passkey', 'trim|required|xss_clean|callback_check_database');
-
-        if($this->form_validation->run() == FALSE)
-        {
-            //Field validation failed.&nbsp; User redirected to login page
-            $this->load->view('accueil_v');
+        if( $this->session->userdata('IDdroit')==1){
+            redirect('admin/admin_c');
         }
-        else
-        {
-            //Go to private area
-            if($this->session->userdata('logged_in'))
-            {
-                $session_data = $this->session->userdata('logged_in');
-                $data['nom'] = $session_data['nom'];
-                $data['IDdroit'] = $session_data['IDdroit'];
-                if($data['IDdroit']==1)
-                    redirect('admin/admin_c', 'refresh');
-                    //$this->load->view('produits/admin/produits_v', $data);
-                else
-                    redirect('client/client_c', 'refresh');
-                    //$this->load->view('produits/client/produits_v', $data);
-            }
-            else
-            {
-                //If no session, redirect to login page
-                redirect('accueil_c', 'refresh');
-            }
+        if( $this->session->userdata('IDdroit')==2){
+            redirect('client/client_c');
         }
-
+        $donnees['titre']="connexion";
+        $this->load->view('accueil_v',$donnees);
     }
-
-    function check_database($passkey)
-    {
-        //Field validation succeeded.&nbsp; Validate against database
-        $nom = $this->input->post('nom');
-
-        //query the database
-        $result = $this->utilisateurs_m->login($nom, $passkey);
-
-        if($result)
-        {
-            $sess_array = array();
-            foreach($result as $row)
-            {
-                $sess_array = array(
-                    'IDutilisateur' => $row->IDutilisateur,
-                    'IDdroit' => $row->IDdroit,
-                    'nom' => $row->nom
-                );
-                $this->session->set_userdata('logged_in', $sess_array);
-            }
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('check_database', 'Invalid username or password');
-            return false;
-        }
-    }
-
-//    function deconnexion()
-//    {
-//        $this->session->unset_userdata('logged_in');
-//        session_destroy();
-//        redirect('accueil_c', 'refresh');
-//    }
 
     public function inscription()
     {
-
         $this->form_validation->set_rules('login','login','trim|required');
         $this->form_validation->set_rules('email','Email','trim|required|valid_email');
         $this->form_validation->set_rules('pass','Mot de passe','trim|required|matches[pass2]');
@@ -94,11 +31,10 @@ class Utilisateurs_c extends CI_Controller {
             if(! $this->utilisateurs_m->test_email($this->input->post('email'))){
                 if(! $this->utilisateurs_m->test_login($this->input->post('login'))){
                     $donnees= array(
-                        'nom'=>$this->input->post('login'),
+                        'nom'=>$this->input->post('nom'),
                         'email'=>$this->input->post('email'),
-                        'pass'=>$this->input->post('pass'), //$this->encrypt->encode(  ; md5(
-                        'droit'=>1,
-                        'valide'=>0
+                        'passkey'=>$this->input->post('passkey'), //$this->encrypt->encode(  ; md5(
+                        'IDdroit'=>1
                     );
                     $this->utilisateurs_m->add_user($donnees);
                     // fin d'ajout et redirection
@@ -114,26 +50,27 @@ class Utilisateurs_c extends CI_Controller {
 
         }
         $donnees['titre']="inscription";
-        $this->load->view('users_inscription',$donnees);
+        $this->load->view('inscription_v',$donnees);
     }
-    public function aff_connexion()
+
+    public function connexion()
     {
-        if ($this->users_m->EST_connecter()){
+        if ($this->utilisateurs_m->EST_connecter()){
             redirect('utilisateurs_c/aff_deconnexion');
         }
-        $this->form_validation->set_rules('login','login','trim|required');
-        $this->form_validation->set_rules('pass','Mot de passe','trim|required');
+        $this->form_validation->set_rules('nom','nom','trim|required');
+        $this->form_validation->set_rules('passkey','passkey','trim|required');
         /* rappeler la vue à la fin de la méthode */
         if($this->form_validation->run()){
             $donnees= array(
-                'login'=>$this->input->post('login'),
-                'pass'=>$this->input->post('pass')
+                'nom'=>$this->input->post('nom'),
+                'passkey'=>$this->input->post('passkey')
             );
             $donnees_session=array();
-            if($this->users_m->verif_connexion($donnees,$donnees_session))                          // and valide ==1
+            if($this->utilisateurs_m->verif_connexion($donnees,$donnees_session))                          // and valide ==1
             {
                 $this->session->set_userdata($donnees_session);
-                redirect('utilisateurs_c/aff_connexion');
+                redirect('utilisateurs_c/connexion');
             }
             else{
                 $donnees['erreur']="mot de passe ou login incorrect";
@@ -142,42 +79,39 @@ class Utilisateurs_c extends CI_Controller {
         }
         $donnees['titre']="connexion";
         // fin d'ajout et redirection
-        $this->load->view('users_index',$donnees);
+        $this->load->view('accueil_v',$donnees);
     }
 
     public function aff_deconnexion(){
-        if( $this->session->userdata('droit')==2){
-            redirect('admin_c');
+        if( $this->session->userdata('IDdroit')==2){
+            redirect('admin/admin_c');
         }
-        if( $this->session->userdata('droit')==1){
-            redirect('client_c');
+        if( $this->session->userdata('IDdroit')==1){
+            redirect('client/client_c');
         }
         print_r($this->session->all_userdata());
         $donnees['titre']="deconnexion";
-        $this->load->view('users_index',$donnees);
+        $this->load->view('utilisateurs_c',$donnees);
     }
+
     public function deconnexion()
     {
         $this->session->sess_destroy();
         redirect('utilisateurs_c');exit;
     }
+
     public function mdp_oublie()
     {
-        $this->load->library('email');
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+        $this->form_validation->set_rules('email','email','trim|required|valid_email');
         /* rappeler la vue à la fin de la méthode */
         if($this->form_validation->run()){
-
-
-            if($this->utilisateurs_m->test_email($_POST['email'])){
+            if($this->utilisateurs_m->test_email($this->input->post('email'))){
                 {
                     $donnees= array(
-                        'email'=>$_POST['email']
+                        'email'=>$this->input->post('email')
                     );
-
-
                     $this->email->from('noreply@monsite.com','Mon site');
-                    $this->email->to($_POST['email']);
+                    $this->email->to($this->input->post('email'),'mot de passe oublié');
                     $this->email->subject('votre mot de passe');
                     $this->email->message('<p>voici un nouveau de passe </p>....');
                     $this->email->send();
@@ -187,14 +121,11 @@ class Utilisateurs_c extends CI_Controller {
                 }
             }
             else{
-                $donnees['erreur']="Cet email n'existe pas";
+                $donnees['erreur']="cet email n existe ps";
             }
 
         }
-        $donnees['titre']="Mot de passe oublié";
-        $this->load->view('users_mdp_oublie',$donnees);
+        $donnees['titre']="mot de passe oublié";
+        $this->load->view('mdp_oublie_v',$donnees);
     }
-
-
 }
-

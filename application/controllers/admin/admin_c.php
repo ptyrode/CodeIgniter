@@ -9,9 +9,9 @@ class Admin_c extends CI_Controller {
     }
     public function index()
     {
-        /* if($this->session->userdata('droit')!=1){
+        if($this->session->userdata('IDdroit')!=1){
             redirect('utilisateurs_c');
-        } */
+        }
         $donnees = array(
             'contenu' => "admin/admin_v",
             'titre' => "gestion des client"

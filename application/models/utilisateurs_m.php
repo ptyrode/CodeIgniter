@@ -5,35 +5,30 @@ class Utilisateurs_m extends CI_Model
 
     public function add_user($donnees)
     {
-        $sql = "INSERT utilisateur VALUES (NULL,\"".$donnees['nom']."\",\"".$donnees['pass']."\",\"".$donnees['email']."\"
+        $sql = "INSERT utilisateur VALUES (NULL,\"".$donnees['nom']."\",\"".$donnees['passkey']."\",\"".$donnees['email']."\"
         ,1) ;";
         $this->db->query($sql);
     }
 
-    function login($nom, $passkey)
+    public function verif_connexion($donnees,&$donnees_resultat)
     {
-        $this -> db -> select('IDutilisateur, nom, passkey, IDdroit');
-        $this -> db -> from('utilisateur');
-        $this -> db -> where('nom', $nom);
-        $this -> db -> where('passkey', $passkey);
-        $this -> db -> limit(1);
-
-        $query = $this -> db -> get();
-
-        if($query -> num_rows() == 1)
+        $sql = "SELECT IDdroit, nom, email from utilisateur WHERE nom=\"".$donnees['nom']."\"
+        and passkey=\"".$donnees['passkey']."\";";
+        $query=$this->db->query($sql);
+        if($query->num_rows()==1)
         {
-            return $query->result();
+            $row=$query->result_array();
+            $donnees_resultat=$row[0];
+            return true;
         }
         else
-        {
             return false;
-        }
     }
 
 
     function EST_connecter()
     {
-        return $this->session->userdata('login') &&  $this->session->userdata('droit') ;
+        return $this->session->userdata('nom') &&  $this->session->userdata('IDdroit') ;
     }
 
     public function deconnexion()
