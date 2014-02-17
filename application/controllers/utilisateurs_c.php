@@ -8,8 +8,7 @@ class Utilisateurs_c extends CI_Controller {
         $this->load->model('utilisateurs_m');
     }
 
-    public function index()
-    {
+    public function index() {
         if( $this->session->userdata('IDdroit')==1){
             redirect('admin/admin_c');
         }
@@ -20,16 +19,15 @@ class Utilisateurs_c extends CI_Controller {
         $this->load->view('accueil_v',$donnees);
     }
 
-    public function inscription()
-    {
-        $this->form_validation->set_rules('login','login','trim|required');
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email');
-        $this->form_validation->set_rules('pass','Mot de passe','trim|required|matches[pass2]');
-        $this->form_validation->set_rules('pass2','Mot de passe','trim|required');
+    public function inscription() {
+        $this->form_validation->set_rules('nom','trim|required');
+        $this->form_validation->set_rules('email','trim|required|valid_email');
+        $this->form_validation->set_rules('passkey','trim|required|matches[passkey2]');
+        $this->form_validation->set_rules('passkey2','trim|required');
         /* rappeler la vue à la fin de la méthode */
         if($this->form_validation->run()){
             if(! $this->utilisateurs_m->test_email($this->input->post('email'))){
-                if(! $this->utilisateurs_m->test_login($this->input->post('login'))){
+                if(! $this->utilisateurs_m->test_login($this->input->post('nom'))){
                     $donnees= array(
                         'nom'=>$this->input->post('nom'),
                         'email'=>$this->input->post('email'),
@@ -53,8 +51,7 @@ class Utilisateurs_c extends CI_Controller {
         $this->load->view('inscription_v',$donnees);
     }
 
-    public function connexion()
-    {
+    public function connexion() {
         if ($this->utilisateurs_m->EST_connecter()){
             redirect('utilisateurs_c/aff_deconnexion');
         }
@@ -82,7 +79,7 @@ class Utilisateurs_c extends CI_Controller {
         $this->load->view('accueil_v',$donnees);
     }
 
-    public function aff_deconnexion(){
+    public function aff_deconnexion() {
         if( $this->session->userdata('IDdroit')==2){
             redirect('admin/admin_c');
         }
@@ -94,14 +91,12 @@ class Utilisateurs_c extends CI_Controller {
         $this->load->view('utilisateurs_c',$donnees);
     }
 
-    public function deconnexion()
-    {
+    public function deconnexion() {
         $this->session->sess_destroy();
         redirect('utilisateurs_c');exit;
     }
 
-    public function mdp_oublie()
-    {
+    public function mdp_oublie() {
         $this->form_validation->set_rules('email','email','trim|required|valid_email');
         /* rappeler la vue à la fin de la méthode */
         if($this->form_validation->run()){

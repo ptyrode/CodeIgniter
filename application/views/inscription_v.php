@@ -61,33 +61,30 @@
         <div>
             <h1>Inscription</h1>
             <?php echo form_open('utilisateurs_c/inscription'); ?>
-
-            <label for="login">login:</label>
-            <input type="text" name="login" value="<?php echo set_value('login');?>" class="form-control"/>
-            <?php echo form_error('login','<span class="error">',"</span>");?>
+            <label for="nom">Login :</label>
+            <input type="text" name="nom" value="<?php echo set_value('nom');?>" class="form-control"/>
+            <?php echo form_error('nom','<span class="error">',"</span>");?>
             <br>
 
-            <label for="email">email:</label>
+            <label for="email">Email :</label>
             <input type="text" name="email" value="<?php echo set_value('email');?>" class="form-control"/>
             <?php echo form_error('email','<span class="error">',"</span>");?>
             <br>
 
-            <label for="pass">Mot de passe:</label>
-            <input type="password" name="pass" value="<?= set_value('pass');?>" class="form-control"/>
-            <?php echo form_error('pass','<span class="error">',"</span>");?>
+            <label for="passkey">Mot de passe :</label>
+            <input type="password" name="passkey" value="<?= set_value('passkey');?>" class="form-control"/>
+            <?php echo form_error('passkey','<span class="error">',"</span>");?>
             <br>
-            <label for="pass2">confirmation Mot de passe:</label>
-            <input type="password" name="pass2" value="<?= set_value('pass2');?>" class="form-control"/>
-            <?php echo form_error('pass2','<span class="error">',"</span>");?>
+            <label for="passkey2">Confirmer mot de passe :</label>
+            <input type="password" name="passkey2" value="<?= set_value('passkey2');?>" class="form-control"/>
+            <?php echo form_error('passkey2','<span class="error">',"</span>");?>
             <br>
             <?php if(isset($erreur))echo '<span class="error">'.$erreur."</span>";?>
-            <input type="submit" value="Envoyer" />
+            <input type="submit" class="btn btn-success" value="Envoyer" />
 
             <?php echo form_close(); ?>
-
+            <br>
         </div>
-
-        <p class="footer">DUT info Belfort <strong>{elapsed_time}</strong> seconds</p>
     </div>
 </div>
 <!-- Bootstrap core JavaScript

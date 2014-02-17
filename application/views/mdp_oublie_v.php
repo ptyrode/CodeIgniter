@@ -61,17 +61,16 @@
             <h1>Mot de passe oublié</h1>
             <?php echo form_open('utilisateurs_c/mdp_oublie'); ?>
 
-            <label for="email">Votre adresse eMail:</label><br/>
-            <input type="text" name="email" value="<?php echo set_value('email');?>" />
-            <?php echo form_error('email','<span class="error">',"</span>");?><br/><br/>
-            <?php if(isset($erreur))echo '<span class="error">'.$erreur."</span>";?> <br>
-            <input type="submit" value="Envoyer" />
+            <label for="email">Votre adresse email :</label><br/>
+            <input type="text" name="email" value="<?php echo set_value('email');?>" class="form-control"/>
+            <?php echo form_error('email','<span class="error">',"</span>");?><br>
+            <?php if(isset($erreur))echo '<span class="error">'.$erreur."</span>";?>
+            <input type="submit" class="btn btn-success" value="Envoyer" />
 
             <?php echo form_close(); ?>
 
         </div>
-
-        <p class="footer">DUT info Belfort <strong>{elapsed_time}</strong> seconds</p>
+    <br>
     </div>
 </div>
 </body>
