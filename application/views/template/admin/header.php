@@ -52,7 +52,7 @@
 
       <div class="masthead">
         <ul class="nav nav-justified">
-          <li><a href="<?php echo site_url('/slider_c/index/') ?>">Accueil</a></li>
+          <li><a href="<?php echo site_url('admin/admin_c/index/') ?>">Accueil</a></li>
             <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Produits <b class="caret"></b> </a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/produits_c/index/') ?>">Liste des produits</a></li>
