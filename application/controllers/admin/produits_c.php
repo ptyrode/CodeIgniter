@@ -9,8 +9,8 @@ class Produits_c extends CI_Controller {
 
 
             $data['contenu'] = "produits_v";
+            $data['nomUtil'] = $this->session->all_userdata();
             $data['produits'] = $this->produits_m->get_all();
-
 
 
         $this->load->view('template/admin/content', $data);

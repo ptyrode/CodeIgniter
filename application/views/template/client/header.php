@@ -47,6 +47,7 @@
       </div>
       </div>
       <br/><br/>
+
     <div class="container">
 
       <div class="masthead">
@@ -58,6 +59,8 @@
                     <li><a href="<?php echo site_url('admin/produits_c/index/') ?>">Liste des produits</a></li>
 <!--                    <li><a href="--><?php //echo site_url('admin/produits_c/creer_produit/') ?><!--">Créer un produit</a></li>-->
                     <li class="divider"></li>
+                    <li><a href="<?php echo site_url('admin/commandes_c/cmd_utilisateur/'.$nomUtil['nom']) ?>">Mes commandes</a></li>
+
                     <li><a href="#">Autres</a></li>
                 </ul>
             </li>

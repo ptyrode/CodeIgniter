@@ -18,8 +18,14 @@
                         <td><?= $r->IDtype_prixDes ?></td>
                         <td><?= $r->IDorigineDes ?></td>
                         <td><?= $r->IDcategorieDes ?></td>
-                        <td><a href="<?php echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?>">Modifier</a></td>
-                        <td><a href="<?php echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?>">Supprimer</a></td>
+                        <?php
+                        if($nomUtil['IDdroit'] == 1){ ?>
+                            <td><a href="<?php echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?>">Modifier</a></td>
+                            <td><a href="<?php echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?>">Supprimer</a></td>
+                        <?php    }else{ ?>
+                            <td><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/' . $r->IDproduit ) ?>">Commander</a></td>
+
+                           <?php }; ?>
                     </tr>
                 <?php endforeach; ?>
             </table>
