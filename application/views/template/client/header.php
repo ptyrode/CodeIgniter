@@ -47,17 +47,21 @@
       </div>
       </div>
       <br/><br/>
+
     <div class="container">
 
       <div class="masthead">
           <br/>
         <ul class="nav nav-justified">
-          <li><a href="<?php echo site_url('/slider_c/index/') ?>">Accueil</a></li>
+          <li><a href="<?php echo site_url('/client/client_c/index') ?>">Accueil</a></li>
             <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Produits <b class="caret"></b> </a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/produits_c/index/') ?>">Liste des produits</a></li>
 <!--                    <li><a href="--><?php //echo site_url('admin/produits_c/creer_produit/') ?><!--">Créer un produit</a></li>-->
                     <li class="divider"></li>
+
+                        <li><a href="<?php echo site_url('admin/commandes_c/cmd_utilisateur/'.$nomUtil['nom']) ?>">Mes commandes</a></li>
+
                     <li><a href="#">Autres</a></li>
                 </ul>
             </li>
@@ -77,7 +81,7 @@
 <!--                    <li><a href="#">Autres</a></li>-->
 <!--                </ul>-->
 <!--            </li>-->
-            <li><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/') ?>">Nouvelle commande</a></li>
+            <li><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
           <li><a href="#">Menu 4</a></li>
         </ul>
       </div>

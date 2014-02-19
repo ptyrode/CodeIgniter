@@ -48,7 +48,8 @@
                 </div>
                 <input type="submit" class="btn btn-success" value="Connexion">
                 <a type="button" class="btn btn-success" href="<?php echo site_url('utilisateurs_c/inscription') ?>">Inscription</a>
-            <?= anchor('utilisateurs_c/mdp_oublie','Mot de passe oublié ?')?>
+<!--            //--><?//= anchor('utilisateurs_c/mdp_oublie','Mot de passe oublié ?')?>
+            <a type="button" type="button" class="btn btn-danger" href="<?php echo site_url('utilisateurs_c/mdp_oublie') ?>" data-toggle="tooltip" data-placement="bottom" title="Mot de passe oublié ?">?</a>
             <?php echo form_close(); ?>
 
         </div><!--/.navbar-collapse -->
@@ -73,18 +74,18 @@
         </div>
     </div>
 </div>
-<div id="presentation">
+
 <div class="container">
     <!-- Example row of columns -->
-
+    <div id="presentation" >
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" id="myshadow1">
                 <h2>Le Biau Potager</h2>
                 <p>En bio depuis sa création en 1989. Denis BRUN et Christophe RAPP produisent des légumes sur environ 6 hectares. </p>
                 <p><img src="<?php echo base_url(); ?>img/accueil1.bmp"></p>
                 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="myshadow1">
                 <h2>La culture</h2>
                 <p>Reppe est situé dans le Sundgau entre Belfort et Altkirch. Les sols sont argileux ce qui rend la culture de primeurs plus difficile lors des printemps pluvieux ; par contre en été sans irrigation les légumes de plein champ ont une pousse plus lente et développent alors tout leur parfum.
                     Le compost est le seul apport, il permet d'améliorer le sol et de nourrir indirectement les plantes.
@@ -92,7 +93,7 @@
                 <p><img src="<?php echo base_url(); ?>img/accueil2.bmp"></p>
                 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 <h2>L'équipe</h2>
                 <p>Nathalie, Estelle et Nadine sont les salariées permanentes ; l'équipe est complétée en été par des saisonniers. Vous nous retrouverez sur les marchés de Belfort, Sochaux ainsi qu'à Reppe au jardin</p>
                 <p><img src="<?php echo base_url(); ?>img/accueil3.bmp"></p>

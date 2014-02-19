@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/codligniter.iml" filepath="$PROJECT_DIR$/.idea/codligniter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/codligniterGt.iml" filepath="$PROJECT_DIR$/.idea/codligniterGt.iml" />
     </modules>
   </component>
 </project>

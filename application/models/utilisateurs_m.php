@@ -23,7 +23,7 @@ class Utilisateurs_m extends CI_Model
             return false;
     }
 
-    function est_connecte()
+    function EST_connecter()
     {
         return $this->session->userdata('nom') &&  $this->session->userdata('IDdroit') ;
     }

@@ -12,14 +12,31 @@
                         <td><?= $r->IDproduit ?></td>
                         <td><?= $r->designation ?></td>
                         <td><?= $r->commentaire ?></td>
-                        <td><?= $r->prix ?></td>
+                        <td><?= $r->prix ?>€</td>
                         <td><?= $r->code_produit ?></td>
-                        <td><?= $r->disponible ?></td>
+                        <?php if($r->disponible == 1){ $dispo=1;?>
+<!--                           <td >  --><?php //echo "Oui"; ?><!-- </td>-->
+
+                        <?php } else { $dispo=0; ?>
+<!--                            <td>  --><?php //echo "Non"; ?><!-- </td>-->
+                        <?php } ?>
+
                         <td><?= $r->IDtype_prixDes ?></td>
                         <td><?= $r->IDorigineDes ?></td>
                         <td><?= $r->IDcategorieDes ?></td>
-                        <td><a href="<?php echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?>">Modifier</a></td>
-                        <td><a href="<?php echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?>">Supprimer</a></td>
+                        <?php
+                        if($nomUtil['IDdroit'] == 1){ ?>
+                            <td><a href="<?php echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?>">Modifier</a></td>
+                            <td><a href="<?php echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?>">Supprimer</a></td>
+                        <?php }else{
+                              if($dispo==1){      ?>
+                            <td><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/' . $r->IDproduit ) ?>">Commander</a></td>
+
+                           <?php }else{ ?>
+                                  <td><label>Produit non disponible</label></a></td>
+
+
+                      <?php } }; ?>
                     </tr>
                 <?php endforeach; ?>
             </table>

@@ -20,4 +20,6 @@ class Secondaires_c extends CI_Controller {
 
         $this->load->view('template/admin/content', $data);
     }
+
+
 }
