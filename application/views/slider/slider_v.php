@@ -6,7 +6,7 @@
 
 
 <style type="text/css">
-    body { background-color:#000; }
+    /*body { background-color:#000; }*/
 
     #slider {
         width:600px;
