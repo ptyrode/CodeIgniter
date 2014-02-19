@@ -52,23 +52,36 @@ class Commandes_c extends CI_Controller {
                 }
         } */ // A activer pour mettre en place le systeme de semaine (ne pas supprimer)
 
-        $data = array(
-            'contenu' => "client/nvl_commande_v",
-            'users' => $this->commandes_m->get_dropdown_users(),
-            'lieu' => $this->commandes_m->get_dropdown_lieu(),
-            'semaine' => $this->commandes_m->get_dropdown_semaine(),
-            'produits'=> $this->commandes_m->get_all(),
-            'nomUtil'=> $this->session->all_userdata(),
-            'idprod' => $r
+        if(isset($r)){
+            $data = array(
+                'contenu' => "client/nvl_commande_v",
+                'users' => $this->commandes_m->get_dropdown_users(),
+                'lieu' => $this->commandes_m->get_dropdown_lieu(),
+                'semaine' => $this->commandes_m->get_dropdown_semaine(),
+                'produits'=> $this->commandes_m->get_all(),
+                'nomUtil'=> $this->session->all_userdata(),
+                'idprod' => $r
 
-        );
+            );
+        }else{
+            $data = array(
+                'contenu' => "client/nvl_commande_v",
+                'users' => $this->commandes_m->get_dropdown_users(),
+                'lieu' => $this->commandes_m->get_dropdown_lieu(),
+                'semaine' => $this->commandes_m->get_dropdown_semaine(),
+                'produits'=> $this->commandes_m->get_all(),
+                'nomUtil'=> $this->session->all_userdata(),
 
-        $data2 = array(
-            'idprod' => $r
-        );
+
+            );
+        }
+
+
+
+
        // $data2['idprod'] = $r;
         $this->load->helper('form');
-        $this->load->view('template/client/content', $data,$data2);
+        $this->load->view('template/client/content', $data);
 
     }
 
@@ -128,6 +141,8 @@ class Commandes_c extends CI_Controller {
             'contenu' => "client/commandes_perso_v",
             'commandes'=> $this->commandes_m->get_all_cmd_from_user($nomUser)
         );
+
+        $this->load->view('template/client/content', $data);
     }
     //public function creer_a_pour(){
 

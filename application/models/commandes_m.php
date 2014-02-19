@@ -89,13 +89,15 @@ class Commandes_m extends CI_Model {
 
     function get_all_cmd_from_user($nomUser) {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
-        $q = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,(select nom from utilisateur where IDutilisateur =commande.IDutilisateur)
-        as IDutilisateurDes,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select valide from semaine where IDsemaine = commande.IDsemaine ) as IDsemaineDes from COMMANDE  ");
+        $q = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY date_commande DESC");
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {
                 $data[] = $row;
             }
+        }else{
+            $data[]="vide";
         }
+
         return $data;
     }
 

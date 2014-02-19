@@ -25,7 +25,12 @@
             <?=form_dropdown('idsemaine',$semaine);?><br/>
 
             <label>Produit : </label>
-            <?=form_dropdown('idprod',$produits,$idprod);?><br/>
+            <?php if(isset($idprod)){ ?>
+                <?=form_dropdown('idprod',$produits,$idprod);?><br/>
+            <?php }else{ ?>
+                <?=form_dropdown('idprod',$produits,1);?><br/>
+             <?php } ?>
+
 
 
             <label>Quantité: </label><input class="form-control" type="text" name="qte"/><br/>
