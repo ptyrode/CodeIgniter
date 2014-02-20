@@ -96,31 +96,62 @@ class Utilisateurs_c extends CI_Controller {
         redirect('utilisateurs_c');exit;
     }
 
-    public function mdp_oublie() {
+    public function mdp_oublie()
+    {
+        //set email library configuration
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'pierrick.tyrode@googlemail.com',
+            'smtp_pass' => 'ouhans9000',
+        );
+
+        //$this->load->library('email');
         $this->form_validation->set_rules('email','email','trim|required|valid_email');
         /* rappeler la vue à la fin de la méthode */
         if($this->form_validation->run()){
             if($this->utilisateurs_m->test_email($this->input->post('email'))){
-                {
-                    $donnees= array(
-                        'email'=>$this->input->post('email')
-                    );
-                    $this->email->from('noreply@monsite.com','Mon site');
-                    $this->email->to($this->input->post('email'),'mot de passe oublié');
-                    $this->email->subject('votre mot de passe');
-                    $this->email->message('<p>voici un nouveau de passe </p>....');
-                    $this->email->send();
-                    // $this->users_m->envoie_email($donnees);
-                    // fin d'ajout et redirection
-                    redirect(base_url());
-                }
-            }
-            else{
+                $donnees = array(
+                    'email' => $this->input->post('email')
+                );
+
+                //nouveau mdp
+                $nouveau_mdp = $this->chaine_aleatoire(8);
+                $this->utilisateurs_m->modifier_mdp($nouveau_mdp, $this->input->post('email'));
+
+                //load email library
+                $this->load->library('email', $config);
+                $this->email->set_newline("\r\n");
+
+                //set email information and content
+                $this->email->from('admin@biaupotager.fr', 'Biau Potager');
+                $this->email->to($this->input->post('email'), 'mot de passe oublié');
+                $this->email->subject('Votre mot de passe');
+                $this->email->message('Voici un nouveau mot de passe : ' . $nouveau_mdp);
+                $this->email->send();
+                $this->utilisateurs_m->modifier_mdp($donnees);
+                redirect(base_url());
+            } else {
                 $donnees['erreur']="cet email n existe ps";
             }
 
         }
         $donnees['titre']="mot de passe oublié";
         $this->load->view('mdp_oublie_v',$donnees);
+
     }
+
+    public function chaine_aleatoire($nb_car, $chaine = 'azertyuiopqsdfghjklmwxcvbn123456789')
+    {
+        $nb_lettres = strlen($chaine) - 1;
+        $generation = '';
+        for ($i = 0; $i < $nb_car; $i++) {
+            $pos = mt_rand(0, $nb_lettres);
+            $car = $chaine[$pos];
+            $generation .= $car;
+        }
+        return $generation;
+    }
+
 }

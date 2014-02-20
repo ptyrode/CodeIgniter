@@ -50,4 +50,10 @@ class Utilisateurs_m extends CI_Model
         else
             return false;
     }
+
+    public function modifier_mdp($mdp, $email)
+    {
+        $sql = "UPDATE utilisateur SET passkey=\"" . $mdp . "\" WHERE email=\"" . $email . "\"";
+        $this->db->query($sql);
+    }
 }
