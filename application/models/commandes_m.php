@@ -20,6 +20,32 @@ class Commandes_m extends CI_Model {
         }
         return $data;
     }
+
+    function get_all_cmd_in_obj() {
+        // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
+        $tags = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,(select nom from utilisateur where IDutilisateur =commande.IDutilisateur)
+        as IDutilisateurDes,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as IDsemaineDes from COMMANDE  ");
+        $dropdowns = $tags->result();
+        foreach ($dropdowns as $dropdown)
+        {
+            $dropdownlist[$dropdown->IDproduit] = $dropdown->designation;
+
+        }
+        $finaldropdown = $dropdownlist;
+        return $finaldropdown;
+    }
+    function get_all()
+    {
+        $tags = $this->db->query("select distinct * from produit where disponible=1");
+        $dropdowns = $tags->result();
+        foreach ($dropdowns as $dropdown)
+        {
+            $dropdownlist[$dropdown->IDproduit] = $dropdown->designation;
+
+        }
+        $finaldropdown = $dropdownlist;
+        return $finaldropdown;
+    }
 //    function getuser(){
 //        $q = $this->db->query("select nom from utilisateur" );
 //
@@ -37,6 +63,29 @@ class Commandes_m extends CI_Model {
 //
 //        return $q->result_array();
 //    }
+    function get_dropdown_products()
+    {
+        $tags = $this->db->query("select distinct IDproduit,designation from produit where disponible=1 ");
+        $dropdowns = $tags->result();
+        foreach ($dropdowns as $dropdown)
+        {
+            $dropdownlist[$dropdown->IDproduit] = $dropdown->designation;
+        }
+        $finaldropdown = $dropdownlist;
+        return $finaldropdown;
+    }
+
+    function get_products_type_table()
+    {
+       $result = $this->db->query("select distinct code_produit,designation,(select designation from type_prix where IDtype_prix = produit.IDtype_prix) as typePrix from produit where disponible=1 ");
+        foreach ($result->result() as $row) {
+            $data[] = $row;
+        }
+
+        return $data;
+    }
+
+
 
     function get_dropdown_users()
     {
@@ -67,25 +116,14 @@ class Commandes_m extends CI_Model {
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
-            $dropdownlist[$dropdown->IDsemaine] = $dropdown->date_fin;
+            $dropdownlist[$dropdown->IDsemaine] = $dropdown->date_debut;
 
         }
         $finaldropdown = $dropdownlist;
         return $finaldropdown;
     }
 
-    function get_all()
-    {
-        $tags = $this->db->query("select distinct * from produit where disponible=1");
-        $dropdowns = $tags->result();
-        foreach ($dropdowns as $dropdown)
-        {
-            $dropdownlist[$dropdown->IDproduit] = $dropdown->designation;
 
-        }
-        $finaldropdown = $dropdownlist;
-        return $finaldropdown;
-    }
 
     function get_all_cmd_from_user($nomUser) {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
@@ -205,7 +243,17 @@ class Commandes_m extends CI_Model {
     }
 //test pour commit
     function validation_cmd($idCmd){
-        $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
+        $res1 = $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
+
+        return $res1;
+    }
+
+    function suppression_cmd($idCmd){
+        $this->db->query("DELETE FROM a_pour WHERE IDcommande = ".$idCmd." ");
+        $res1 = $this->db->query("DELETE FROM commande WHERE IDcommande = ".$idCmd." ");
+        return $res1;
+
+
     }
 }
     
