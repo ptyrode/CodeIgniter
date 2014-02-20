@@ -55,10 +55,10 @@ class Commandes_c extends CI_Controller {
         if(isset($r)){  //si on clique sur "commander" depuis la table des produits
             $data = array(
                 'contenu' => "client/nvl_commande_v",
-                'users' => $this->commandes_m->get_dropdown_users(),
+//                'users' => $this->commandes_m->get_dropdown_users(),
                 'lieu' => $this->commandes_m->get_dropdown_lieu(),
                 'semaine' => $this->commandes_m->get_dropdown_semaine(),
-                'produits'=> $this->commandes_m->get_all(),
+                'produits'=> $this->commandes_m->get_all_cmd(),
                 'nomUtil'=> $this->session->all_userdata(),
                 'idprod' => $r
 
@@ -69,7 +69,7 @@ class Commandes_c extends CI_Controller {
                 'users' => $this->session->all_userdata(),
                 'lieu' => $this->commandes_m->get_dropdown_lieu(),
                 'semaine' => $this->commandes_m->get_dropdown_semaine(),
-                'produits'=> $this->commandes_m->get_all(),
+                'produits'=> $this->commandes_m->get_all_cmd(),
                 'nomUtil'=> $this->session->all_userdata(),
 
 
@@ -86,18 +86,25 @@ class Commandes_c extends CI_Controller {
     }
 
     public function verif_semaine(){
-        $semaine = $_POST['idsemaine'];
-        $isValid = $this->commandes_m->verifier_semaine($semaine);
+        $res = $this->testDate($_POST[datecommande]);
+        if($res!=false){
+            $semaine = $_POST['idsemaine'];
+            $isValid = $this->commandes_m->verifier_semaine($semaine);
 
-        if($isValid == 1){
-            $this->ajouter_commande();
-        }else if($isValid == 0){
-            $this->mauvaise_semaine();
+            if($isValid == 1){
+                $this->ajouter_commande();
+            }else if($isValid == 0){
+                $this->mauvaise_semaine();
+            }else{
+                echo("c'est mort");
+            }
         }else{
-            echo("c'est mort");
-        }
+                $this->mauvaise_semaine();
+            }
     }
-
+    public function testDate($date){
+        return preg_match( '`^\d{1,2}/\d{1,2}/\d{4}$`' , $date );
+    }
     public function getIdUser(){
         $nom = $this->session->userdata('nom');
         $id = $this->commandes_m->get_id_user_for_cmd($nom);
@@ -110,14 +117,14 @@ class Commandes_c extends CI_Controller {
 
         $semaine = $_POST['idsemaine']; // normalement plus utile mais vaut mieux garder une securité..
         $idUser = $this->getIdUser();
-
+        $prixTotal = $this->calculPrixtotalCmd($_POST['qte']);
         if(isset($_POST['lieuName'])){
             $idLieu = $this->commandes_m->ajouterLieu($_POST['lieuName']);
 
             $data = array(
                 'IDcommande' => null,
                 'date_commande' => $_POST['datecommande'],
-                'prix_total' => $_POST['prixtotal'],
+                'prix_total' => $prixTotal,
                 'IDutilisateur' => $idUser,
                 'IDlieu' => $idLieu,
                 'IDsemaine' => $_POST['idsemaine']
@@ -128,7 +135,7 @@ class Commandes_c extends CI_Controller {
             $data = array(
                 'IDcommande' => null,
                 'date_commande' => $_POST['datecommande'],
-                'prix_total' => $_POST['prixtotal'],
+                'prix_total' => $prixTotal,
                 'IDutilisateur' => $idUser,
                 'IDlieu' => $_POST['idlieu'],
                 'IDsemaine' => $_POST['idsemaine']
@@ -152,9 +159,23 @@ class Commandes_c extends CI_Controller {
         $this->load->view('template/client/content', $data);
 
     }
-
+    public function calculPrixtotalCmd($nb){
+        return 10;
+    }
     public function mauvaise_semaine(){
-        $this->index();
+        $data = array(
+            'contenu' => "client/nvl_commande_v",
+            'users' => $this->session->all_userdata(),
+            'lieu' => $this->commandes_m->get_dropdown_lieu(),
+            'semaine' => $this->commandes_m->get_dropdown_semaine(),
+            'produits'=> $this->commandes_m->get_all_cmd(),
+            'nomUtil'=> $this->session->all_userdata(),
+            'erreurSemaine' => "Veuillez selectionner une semaine ulterieure à la semaine actuelle"
+
+        );
+
+        $this->load->helper('form');
+        $this->load->view('template/client/content', $data);
     }
 
     public function cmd_utilisateur($nomUser){

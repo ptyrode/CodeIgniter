@@ -81,7 +81,7 @@
 <!--                    <li><a href="#">Autres</a></li>-->
 <!--                </ul>-->
 <!--            </li>-->
-            <li><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
+            <li><a href="<?php echo site_url('client/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
           <li><a href="#">Menu 4</a></li>
         </ul>
       </div>
