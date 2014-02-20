@@ -12,6 +12,7 @@ class Admin_c extends CI_Controller {
         if($this->session->userdata('IDdroit')!=1){
             redirect('utilisateurs_c');
         }
+        //modif pour le commit
         $donnees = array(
             'contenu' => "admin/admin_v",
             'titre' => "gestion des client"
