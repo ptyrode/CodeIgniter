@@ -171,10 +171,20 @@ class Commandes_c extends CI_Controller {
     public function valid_cmd($idCommande){
         $data = array(
             'contenu' => "admin/commande_v",
-            $this->commandes_m->validation_cmd($idCommande),
+            'retourValid' => $this->commandes_m->validation_cmd($idCommande),
             'commandes'=> $this->commandes_m->get_all_cmd()
         );
         $this->load->view('template/admin/content', $data);
+    }
+
+    public function suppr_cmd($idCommande){
+        $data = array(
+            'contenu' => "admin/commande_v",
+            'retourSuppr' => $this->commandes_m->suppression_cmd($idCommande),
+            'commandes' => $this->commandes_m->get_all_cmd()
+        );
+
+        $this->load->view('template/admin/content',$data);
     }
    // }
 }

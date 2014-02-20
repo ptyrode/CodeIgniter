@@ -205,7 +205,17 @@ class Commandes_m extends CI_Model {
     }
 //test pour commit
     function validation_cmd($idCmd){
-        $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
+        $res1 = $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
+
+        return $res1;
+    }
+
+    function suppression_cmd($idCmd){
+        $this->db->query("DELETE FROM a_pour WHERE IDcommande = ".$idCmd." ");
+        $res1 = $this->db->query("DELETE FROM commande WHERE IDcommande = ".$idCmd." ");
+        return $res1;
+
+
     }
 }
     

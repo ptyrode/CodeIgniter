@@ -1,12 +1,12 @@
 <div class="jumbotron">
-    <h2>Mes produits</h2>
+    <h2>Tous les produits</h2>
 </div>
 
 <div class="container" id="body">
     <div class="row">
         <?php if ($produits != null): ?>
             <table class="table table-striped table-hover table-bordered">
-                <th>Identifiant du produit</th><th>Designation</th><th>Commentaire</th><th>Prix</th><th>Code produit (balance)</th><th>Disponible</th><th>Type prix</th><th>Origine</th><th>Categorie</th>
+                <th>Identifiant du produit</th><th>Designation</th><th>Commentaire</th><th>Prix</th><th>Code produit (balance)</th><th>Type prix</th><th>Origine</th><th>Categorie</th>
                 <?php foreach ($produits as $r): ?>
                     <tr>
                         <td><?= $r->IDproduit ?></td>
