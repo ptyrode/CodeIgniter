@@ -64,7 +64,7 @@
             <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Commandes <b class="caret"></b> </a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/commandes_c/index/') ?>">Liste des Commandes</a></li>
-                    <li><a href="<?php echo site_url('admin/commandes_c/nouvelle_commande/') ?>">Passer une nouvelle commande</a></li>
+<!--                    <li><a href="--><?php //echo site_url('admin/commandes_c/nouvelle_commande/') ?><!--">Passer une nouvelle commande</a></li>-->
                     <li class="divider"></li>
                     <li><a href="#">Autres</a></li>
                 </ul>

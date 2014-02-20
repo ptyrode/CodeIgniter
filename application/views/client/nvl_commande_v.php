@@ -2,6 +2,23 @@
     <h2>Passer une nouvelle commande</h2>
 </div>
 
+
+
+<script type="text/javascript">
+
+    function verif(objet) {
+        if (objet.checked) {
+            document.getElementById("listeLieu").disabled = true;
+            document.getElementById("nvLieu").disabled = false;
+
+        }else{
+            document.getElementById("listeLieu").disabled = false;
+
+            document.getElementById("nvLieu").disabled = true;
+        }
+    }
+
+</script>
 <div class="container" id="body">
     <div class="row">
 
@@ -10,18 +27,24 @@
             <label>Date de la commande : </label><input class="form-control" type="date" name="datecommande"/><br/>
             <label>Prix total : </label><input class="form-control" type="text" name="prixtotal"/><br/>
 
-            <label>Utilisateur passant la commande : </label>
-            <?=form_dropdown('iduser',$users);?><br/>
+<!--            <label>Utilisateur passant la commande : </label>-->
+<!--            <input type="" name="r_id" value="mut"/>-->
+<!--<!--            <label name="iduser" >-->--><?php ////echo $nomUtil['nom'];?><!--<!--</label><br/>-->-->
+<!--<!--            -->--><?////=form_dropdown('iduser',$users);?><!--<!--<br/>-->-->
 
 
+<!--            lieu de commande-->
             <label>Lieu de commande : </label>
-            <?=form_dropdown('idlieu',$lieu,1);?>
-<!--            <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">+</button>-->
-
-<!--    -->
+            <?php
+                $js = 'id="listeLieu" ';
+            ?>
+            <?=form_dropdown('idlieu',$lieu,1,$js) ;?>
+            <input type="checkbox" name="selec"  onclick="verif(this)" > Autre  </input><input type="text" id="nvLieu" name="lieuName" disabled="true"/>
             <br/>
 
-            <label>Fin de la semaine : </label>
+
+
+            <label>A livrer au plus tard : </label>
             <?=form_dropdown('idsemaine',$semaine);?><br/>
 
             <label>Produit : </label>

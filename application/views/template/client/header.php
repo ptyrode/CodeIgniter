@@ -56,11 +56,11 @@
           <li><a href="<?php echo site_url('/client/client_c/index') ?>">Accueil</a></li>
             <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Produits <b class="caret"></b> </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo site_url('admin/produits_c/index/') ?>">Liste des produits</a></li>
+                    <li><a href="<?php echo site_url('client/produits_c/index/') ?>">Liste des produits</a></li>
 <!--                    <li><a href="--><?php //echo site_url('admin/produits_c/creer_produit/') ?><!--">Créer un produit</a></li>-->
                     <li class="divider"></li>
 
-                        <li><a href="<?php echo site_url('admin/commandes_c/cmd_utilisateur/'.$nomUtil['nom']) ?>">Mes commandes</a></li>
+                        <li><a href="<?php echo site_url('client/commandes_c/cmd_utilisateur/'.$nomUtil['nom']) ?>">Mes commandes</a></li>
 
                     <li><a href="#">Autres</a></li>
                 </ul>

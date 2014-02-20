@@ -167,14 +167,5 @@ class Commandes_c extends CI_Controller {
     }
     //public function creer_a_pour(){
 
-
-    public function valid_cmd($idCommande){
-        $data = array(
-            'contenu' => "admin/commande_v",
-            $this->commandes_m->validation_cmd($idCommande),
-            'commandes'=> $this->commandes_m->get_all_cmd()
-        );
-        $this->load->view('template/admin/content', $data);
-    }
    // }
 }
