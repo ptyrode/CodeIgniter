@@ -21,5 +21,30 @@ class Secondaires_c extends CI_Controller
         $this->load->view('template/admin/content', $data);
     }
 
+    public function ajout_categorie()
+    {
+        $this->secondaires_m->ajout_categorie($this->input->post('description'));
+    }
+
+    public function ajout_droit()
+    {
+        $this->secondaires_m->ajout_droit($this->input->post('description'));
+    }
+
+    public function ajout_lieu()
+    {
+        $this->secondaires_m->ajout_lieu($this->input->post('description'));
+    }
+
+    public function ajout_origine()
+    {
+        $this->secondaires_m->ajout_origine($this->input->post('description'));
+    }
+
+    public function ajout_semaine()
+    {
+        $this->secondaires_m->ajout_semaine($this->input->post('debut'), $this->input->post('fin'));
+    }
+
 
 }
