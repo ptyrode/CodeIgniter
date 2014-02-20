@@ -203,7 +203,7 @@ class Commandes_m extends CI_Model {
 
         return $nb;
     }
-
+//test pour commit
     function validation_cmd($idCmd){
         $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
     }
