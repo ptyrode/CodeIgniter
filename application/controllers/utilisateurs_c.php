@@ -104,7 +104,8 @@ class Utilisateurs_c extends CI_Controller {
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
             'smtp_user' => 'pierrick.tyrode@googlemail.com',
-            'smtp_pass' => 'ouhans9000',
+            //mdp du compte gmail
+            'smtp_pass' => '',
         );
 
         //$this->load->library('email');
