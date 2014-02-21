@@ -38,11 +38,11 @@
 
     <div id="page">
         <ul id="slider">
-            <li><img src="<?php echo base_url()?>img/slider/01.jpg" alt="" /></li>
-            <li><img src="<?php echo base_url()?>img/slider/02.jpg" alt="" /></li>
-            <li><img src="<?php echo base_url()?>img/slider/03.jpg" alt="" /></li>
-            <li><img src="<?php echo base_url()?>img/slider/04.jpg" alt="" /></li>
-            <li><img src="<?php echo base_url()?>img/slider/05.jpg" alt="" /></li>
+            <li><img src="<?php echo base_url()?>img/slider/01.png" alt="" /></li>
+            <li><img src="<?php echo base_url()?>img/slider/02.png" alt="" /></li>
+            <li><img src="<?php echo base_url()?>img/slider/03.png" alt="" /></li>
+            <li><img src="<?php echo base_url()?>img/slider/04.png" alt="" /></li>
+            <li><img src="<?php echo base_url()?>img/slider/05.png" alt="" /></li>
         </ul>
     </div>
 </div> <!-- /container -->

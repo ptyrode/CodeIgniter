@@ -15,8 +15,19 @@ class Admin_c extends CI_Controller {
         //modif pour le commit
         $donnees = array(
             'contenu' => "admin/admin_v",
+            'listeLieu' => $this->commandes_m->get_dropdown_lieu(),
             'titre' => "gestion des client"
         );
         $this->load->view('template/admin/content',$donnees);
+    }
+
+    public function afficher_table(){
+        $data = array(
+            'contenu' => "admin/admin_v",
+            'listeLieu' => $this->commandes_m->get_dropdown_lieu(),
+            'lieu' => $this->commandes_m->getTableCmdFromLieu($_POST['nomLieu'])
+        );
+
+        $this->load->view('template/admin/content',$data);
     }
 }

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>BioBox Admin</title>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>css/rhinoslider-1.05.css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 
@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">BioBox v1</a>
             </div>
             <div class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">

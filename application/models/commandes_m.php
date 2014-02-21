@@ -11,8 +11,7 @@ class Commandes_m extends CI_Model {
 
     function get_all_cmd() {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
-        $q = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,(select nom from utilisateur where IDutilisateur =commande.IDutilisateur)
-        as IDutilisateurDes,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as IDsemaineDes from COMMANDE  ");
+        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE ");
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {
                 $data[] = $row;
@@ -267,6 +266,21 @@ class Commandes_m extends CI_Model {
         }
 
         return $nb;
+    }
+
+    function getTableCmdFromLieu($lieu){
+        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
+        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
+
+        if ($q->num_rows()>0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+            }
+        }else{
+            $data[]="vide";
+        }
+
+        return $data;
     }
 }
     

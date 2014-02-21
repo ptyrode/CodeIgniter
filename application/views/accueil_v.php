@@ -60,6 +60,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Le Biau Potager Beta</h1>
+        <img src="<?php echo base_url(); ?>img/BioBox.png" style="width: 100%" alt="Affiche"/>
         <div id="menuAccueil">
             <div class="btn btn-large btn-block btn-primary">
                 <div class="openbig"><div class="openbig_title">Acces rapide</div>

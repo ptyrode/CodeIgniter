@@ -17,7 +17,7 @@ class Commandes_c extends CI_Controller {
     public function nouvelle_commande($r){
 
         //$ville = $this->commandes_m->getVille;
-
+/* // systeme de gestion des jours
         if(date("N") < 4){ // si lundi ou mardi
             if(isset($r)){  //si on clique sur "commander" depuis la table des produits
                 $data = array(
@@ -75,11 +75,11 @@ class Commandes_c extends CI_Controller {
 //                }else{
 //                    $data = array('contenu' => "client/delai_depasse");
 //                }
-//        }  // A activer pour mettre en place le systeme de semaine (ne pas supprimer)
+//        } */ // A activer pour mettre en place le systeme de semaine (ne pas supprimer)
 
 
         // reactivez ici pour les test hors date
-/*
+
         if(isset($r)){  //si on clique sur "commander" depuis la table des produits
             $data = array(
                 'contenu' => "client/nvl_commande_v",
@@ -104,7 +104,7 @@ class Commandes_c extends CI_Controller {
 
             );
         }
-*/
+
            // fin ici
 
 

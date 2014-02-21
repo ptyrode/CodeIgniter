@@ -6,6 +6,8 @@
 
 <script type="text/javascript">
 
+
+
     function verif(objet) {
         if (objet.checked) {
             document.getElementById("listeLieu").disabled = true;
@@ -44,14 +46,14 @@
 
             <label >Lieu de livraison : </label>
             <?php
-                $js = 'id="listeLieu" class="form-control "';
+                $js = 'id="listeLieu" class="form-control" onchange="verifDate(this)"';
                 //print_r($recapProd);
             ?>
 
             <?=form_dropdown('idlieu',$lieu,1,$js) ;?>
             <div class="form-control">
                 <input type="checkbox" name="selec" onclick="verif(this)" >  <label >Autre    </label>
-                <input type="text" id="nvLieu" name="lieuName" disabled="true"/>
+                <input type="text" id="nvLieu" name="lieuName"  disabled="true"/>
             </div>
             <br/><br/>
 

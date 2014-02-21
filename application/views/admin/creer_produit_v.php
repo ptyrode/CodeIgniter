@@ -13,24 +13,24 @@
             <label>Code produit(balance) : </label><input class="form-control" type="text" name="codeproduit"/><br/>
             <label>Disponible : </label><input class="form-control" type="text" name="disponible"/><br/>
 
-            <label>Type prix : </label><select name="idtypeprix" >
+            <label>Type prix : </label><select class="form-control"  name="idtypeprix" >
 
                 <?php foreach ($type_prix as $tp): ?>
                     <option value="<?=$tp->IDtype_prix?>" ><?=$tp->designation?></option>
                 <?php endforeach; ?>
             </select><br/><br/>
 
-            <label>Origine : </label><select name="idorigine">
+            <label>Origine : </label><select class="form-control"  name="idorigine">
 
                 <?php foreach ($origine as $o): ?>
                     <option value="<?=$o->IDorigine?>" ><?=$o->description?></option>
                 <?php endforeach; ?>
             </select><br/><br/>
 
-            <label>Categorie : </label><select name="idcategorie">
+            <label>Categorie : </label><select  class="form-control" name="idcategorie">
 
                 <?php foreach ($categorie as $c): ?>
-                    <option value="<?=$c->IDcategorie?>"><?=$c->description?></option>
+                    <option  value="<?=$c->IDcategorie?>"><?=$c->description?></option>
                 <?php endforeach; ?>
             </select><br/><br/>
 
