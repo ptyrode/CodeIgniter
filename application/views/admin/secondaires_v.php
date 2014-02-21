@@ -13,208 +13,208 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div class="tab-pane fade in active" id="categorie">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($categories != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableCategorie">
-                        <th>Identifiant</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                        <?php foreach ($categories as $c): ?>
-                            <tr>
-                                <td><?= $c->IDcategorie ?></td>
-                                <td><?= $c->description ?></td>
+<div class="tab-pane fade in active" id="categorie">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($categories != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableCategorie">
+                    <th>Identifiant</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <?php foreach ($categories as $c): ?>
+                        <tr>
+                            <td><?= $c->IDcategorie ?></td>
+                            <td><?= $c->description ?></td>
+                            <td>
+                                <a href="<?php echo site_url('admin/secondaires_c/sup_categorie/' . $c->IDcategorie) ?>">Supprimer</a>
+                            </td>
+
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'categorie'; ?>
+
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalCategorie">Nouveau
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade" id="droit">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($droits != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableDroit">
+                    <th>Identifiant</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <?php foreach ($droits as $d): ?>
+                        <tr>
+                            <td><?= $d->IDdroit ?></td>
+                            <td><?= $d->description ?></td>
+                            <td><a href="<?php echo site_url('admin/secondaires_c/sup_droit/' . $d->IDdroit) ?>">Supprimer</a>
+                            </td>
+
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'droit'; ?>
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalDroit">Nouveau
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade" id="lieu">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($lieux != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableLieu">
+                    <th>Identifiant</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <?php foreach ($lieux as $l): ?>
+                        <tr>
+                            <td><?= $l->IDlieu ?></td>
+                            <td><?= $l->description ?></td>
+                            <td>
+                                <a href="<?php echo site_url('admin/secondaires_c/sup_lieu/' . $l->IDlieu) ?>">Supprimer</a>
+                            </td>
+
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'lieu';?>
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalLieu">Nouveau
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade" id="origine">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($origines != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableOrigine">
+                    <th>Identifiant</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <?php foreach ($origines as $o): ?>
+                        <tr>
+                            <td><?= $o->IDorigine ?></td>
+                            <td><?= $o->description ?></td>
+                            <td>
+                                <a href="<?php echo site_url('admin/secondaires_c/sup_origine/' . $o->IDorigine) ?>">Supprimer</a>
+                            </td>
+
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'origine';?>
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalOrigine">Nouveau
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade" id="semaine">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($semaines != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableSemaine">
+                    <th>Identifiant</th>
+                    <th>Date de debut</th>
+                    <th>Date de fin</th>
+                    <th>Valide</th>
+                    <th>Action</th>
+                    <?php foreach ($semaines as $s): ?>
+                        <tr>
+                            <td><?= $s->IDsemaine ?></td>
+                            <td><?= date('d-m-Y', strtotime($s->date_debut)) ?></td>
+                            <td><?= date('d-m-Y', strtotime($s->date_fin)) ?></td>
+                            <td><?= $s->valide ?></td>
+                            <td>
+                                <a href="<?php echo site_url('admin/secondaires_c/sup_semaine/' . $s->IDsemaine) ?>">Supprimer</a>
+                            </td>
+
+
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'seese'; ?>
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalSemaine">Nouveau
+                </button>
+                <!--                    <a data-toggle="modal" href="index.html" data-target="#modal">Click me</a>-->
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade" id="utilisateur">
+    <div class="container" id="body">
+        <div class="row">
+            <?php if ($utilisateurs != null): ?><br/><br/>
+                <table class="table table-striped table-hover table-bordered" id="tableUtilisateur">
+                    <th>Identifiant</th>
+                    <th>Nom</th>
+                    <th>Mot de passe</th>
+                    <th>Email</th>
+                    <th>Droit</th>
+                    <th>Action</th>
+                    <?php foreach ($utilisateurs as $u): ?>
+                        <tr>
+                            <td><?= $u->IDutilisateur ?></td>
+                            <td><?= $u->nom ?></td>
+                            <td><?= $u->passkey ?></td>
+                            <td><?= $u->email ?></td>
+                            <td><?= $u->IDdroit ?></td>
+                            <?php if ($u->IDdroit == 3) { ?>
                                 <td>
-                                    <a href="<?php echo site_url('admin/secondaires_c/sup_categorie/' . $c->IDcategorie) ?>">Supprimer</a>
+                                    <a href="<?php echo site_url('admin/secondaires_c/activer_utilisateur/' . $u->IDutilisateur) ?>">Activer</a>
                                 </td>
-
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'categorie'; ?>
-
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalCategorie">Nouveau
-                    </button>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="droit">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($droits != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableDroit">
-                        <th>Identifiant</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                        <?php foreach ($droits as $d): ?>
-                            <tr>
-                                <td><?= $d->IDdroit ?></td>
-                                <td><?= $d->description ?></td>
-                                <td><a href="<?php echo site_url('admin/secondaires_c/sup_droit/' . $d->IDdroit) ?>">Supprimer</a>
-                                </td>
-
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'droit'; ?>
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalDroit">Nouveau
-                    </button>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="lieu">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($lieux != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableLieu">
-                        <th>Identifiant</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                        <?php foreach ($lieux as $l): ?>
-                            <tr>
-                                <td><?= $l->IDlieu ?></td>
-                                <td><?= $l->description ?></td>
-                                <td><a href="<?php echo site_url('admin/secondaires_c/sup_lieu/' . $l->IDlieu) ?>">Supprimer</a>
-                                </td>
-
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'lieu';?>
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalLieu">Nouveau
-                    </button>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="origine">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($origines != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableOrigine">
-                        <th>Identifiant</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                        <?php foreach ($origines as $o): ?>
-                            <tr>
-                                <td><?= $o->IDorigine ?></td>
-                                <td><?= $o->description ?></td>
+                            <?php } else if ($u->IDdroit == 2) { ?>
                                 <td>
-                                    <a href="<?php echo site_url('admin/secondaires_c/sup_origine/' . $o->IDorigine) ?>">Supprimer</a>
+                                    <a href="<?php echo site_url('admin/secondaires_c/desactiver_utilisateur/' . $u->IDutilisateur) ?>">Désactiver</a>
                                 </td>
-
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'origine';?>
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalOrigine">Nouveau
-                    </button>
-                <?php endif; ?>
-            </div>
+                            <?php } ?>
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                            <!--                                <td><a href="-->
+                            <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                        </tr>
+                    <?php endforeach;
+                    $var = 'utilisateur';?>
+                </table>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalUtilisateur">Nouveau
+                </button>
+            <?php endif; ?>
         </div>
     </div>
-
-    <div class="tab-pane fade" id="semaine">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($semaines != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableSemaine">
-                        <th>Identifiant</th>
-                        <th>Date de debut</th>
-                        <th>Date de fin</th>
-                        <th>Valide</th>
-                        <th>Action</th>
-                        <?php foreach ($semaines as $s): ?>
-                            <tr>
-                                <td><?= $s->IDsemaine ?></td>
-                                <td><?= date('d-m-Y', strtotime($s->date_debut)) ?></td>
-                                <td><?= date('d-m-Y', strtotime($s->date_fin)) ?></td>
-                                <td><?= $s->valide ?></td>
-                                <td>
-                                    <a href="<?php echo site_url('admin/secondaires_c/sup_semaine/' . $s->IDsemaine) ?>">Supprimer</a>
-                                </td>
-
-
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'seese'; ?>
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalSemaine">Nouveau
-                    </button>
-                    <!--                    <a data-toggle="modal" href="index.html" data-target="#modal">Click me</a>-->
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="utilisateur">
-        <div class="container" id="body">
-            <div class="row">
-                <?php if ($utilisateurs != null): ?><br/><br/>
-                    <table class="table table-striped table-hover table-bordered" id="tableUtilisateur">
-                        <th>Identifiant</th>
-                        <th>Nom</th>
-                        <th>Mot de passe</th>
-                        <th>Email</th>
-                        <th>Droit</th>
-
-                        <!--                    -->
-                        <?php foreach ($utilisateurs as $u): ?>
-                            <tr>
-                                <td><?= $u->IDutilisateur ?></td>
-                                <td><?= $u->nom ?></td>
-                                <td><?= $u->passkey ?></td>
-                                <td><?= $u->email ?></td>
-                                <td><?= $u->IDdroit ?></td>
-                                <?php if ($u->IDdroit == 3) { ?>
-                                    <td>
-                                        <a href="<?php echo site_url('admin/secondaires_c/activer_utilisateur/' . $u->IDutilisateur) ?>">Activer</a>
-                                    </td>
-                                <?php } else if ($u->IDdroit == 2) { ?>
-                                    <td>
-                                        <a href="<?php echo site_url('admin/secondaires_c/desactiver_utilisateur/' . $u->IDutilisateur) ?>">Désactiver</a>
-                                    </td>
-                                <?php } ?>
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
-                                <!--                                <td><a href="-->
-                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
-                            </tr>
-                        <?php endforeach;
-                        $var = 'utilisateur';?>
-                    </table>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalUtilisateur">Nouveau
-                    </button>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
+</div>
 
 </div>
 
