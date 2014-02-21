@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Biau Potager Version beta</a>
+            <a class="navbar-brand" href="#">BioBox version Beta</a>
         </div>
         <div class="navbar-collapse collapse">
             <?php $class = array('class' => 'navbar-form navbar-right');?>
@@ -59,7 +59,7 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1>Le Biau Potager Beta</h1>
+        <h1>La BioBox</h1>
         <img src="<?php echo base_url(); ?>img/BioBox.png" style="width: 100%" alt="Affiche"/>
         <div id="menuAccueil">
             <div class="btn btn-large btn-block btn-primary">
@@ -105,10 +105,10 @@
 
     <div id="contact">
         <div class="jumbotron">
-            <p>Le Biau Potager
-                50 grande rue
-                90150 REPPE
-                Téléphone : 03.84.23.83.44
+            <p>Le Biau Potager <br/>
+                50 grande rue <br/>
+                90150 REPPE <br/>
+                Téléphone : 03.84.23.83.44 <br/>
                 Courriel : biaupotager@wanadoo.fr </p>
 
             <p><iframe  width="100%" height="250" frameborder="5" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.fr/maps?f=q&amp;hl=fr&amp;geocode=&amp;q=biaupotager&amp;sll=47.685037,7.003613&amp;sspn=0.051541,0.109863&amp;ie=UTF8&amp;cid=47666976,7028503,17597086085125828038&amp;s=AARTsJrih_8jsakCUnMn4SkeXqwgFp2MAw&amp;ll=47.682148,7.035027&amp;spn=0.040449,0.080681&amp;z=13&amp;iwloc=A&amp;output=embed"></iframe>

@@ -37,6 +37,7 @@
     </style>
 
     <div id="page">
+        <h1 style="text-align: center">Bienvenue dans votre espace client</h1>
         <ul id="slider">
             <li><img src="<?php echo base_url()?>img/slider/01.png" alt="" /></li>
             <li><img src="<?php echo base_url()?>img/slider/02.png" alt="" /></li>
@@ -44,5 +45,9 @@
             <li><img src="<?php echo base_url()?>img/slider/04.png" alt="" /></li>
             <li><img src="<?php echo base_url()?>img/slider/05.png" alt="" /></li>
         </ul>
+
+        <br/><br/>
+
     </div>
+    <h2 style="text-align: center">Vous pouvez accedez aux differentes categories grace au menu présent en haut de page</h2>
 </div> <!-- /container -->

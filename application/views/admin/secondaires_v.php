@@ -570,7 +570,7 @@
                     + '<td>' + id + '</td>'
                     + '<td>' + $('#inputDebut').val() + '</td>'
                     + '<td>' + $('#inputFin').val() + '</td>'
-                    + '<td>1</td>'
+                    + '<td>En cours</td>'
                     + '</tr>');
             }
         });
