@@ -112,7 +112,7 @@ class Secondaires_m extends CI_Model
     {
         $debut = date('Y-m-d', strtotime($debut));
         $fin = date('Y-m-d', strtotime($fin));
-        $sql = "INSERT INTO semaine VALUES (NULL,\"" . $debut . "\",\"" . $fin . "\",1);";
+        $sql = "INSERT INTO semaine VALUES (NULL,\"" . $debut . "\",\"" . $fin . "\",'En cours');";
         $this->db->query($sql);
     }
 

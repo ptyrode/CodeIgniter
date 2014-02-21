@@ -39,8 +39,8 @@
               </div>
               <div class="navbar-collapse collapse">
                   <div class="navbar-form navbar-right">
-                      ADMIN
-<!--                      <h2>Bonjour --><?php //echo $nom; ?><!--</h2>-->
+                     <?php $session_id = $this->session->userdata('nom'); ?>
+                      <div style="color: #ffffff">Bonjour <?php echo $session_id; ?></div>
                       <a href="<?php echo site_url('utilisateurs_c/deconnexion/') ?>">Déconnexion</a>
                   </div>
       </div><!--/.navbar-collapse -->
