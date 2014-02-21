@@ -133,4 +133,34 @@ class Secondaires_m extends CI_Model
         $sql = "UPDATE utilisateur SET IDdroit=3 WHERE IDutilisateur=\"" . $id . "\"";
         $this->db->query($sql);
     }
+
+    function sup_categorie($categorie)
+    {
+        $sql = "DELETE FROM categorie WHERE IDcategorie=\"" . $categorie . "\"";
+        $this->db->query($sql);
+    }
+
+    function sup_droit($droit)
+    {
+        $sql = "DELETE FROM droit WHERE IDdroit=\"" . $droit . "\"";
+        $this->db->query($sql);
+    }
+
+    function sup_lieu($lieu)
+    {
+        $sql = "DELETE FROM lieu WHERE IDlieu=\"" . $lieu . "\"";
+        $this->db->query($sql);
+    }
+
+    function sup_origine($origine)
+    {
+        $sql = "DELETE FROM origine WHERE IDorigine\"" . $origine . "\"";
+        $this->db->query($sql);
+    }
+
+    function sup_semaine($semaine)
+    {
+        $sql = "DELETE FROM semaine WHERE IDsemaine=\"" . $semaine . "\"";
+        $this->db->query($sql);
+    }
 }

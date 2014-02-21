@@ -63,4 +63,34 @@ class Secondaires_c extends CI_Controller
         redirect('admin/secondaires_c/');
     }
 
+    function sup_categorie($categorie)
+    {
+        $this->secondaires_m->sup_categorie($categorie);
+        redirect('admin/secondaires_c/');
+    }
+
+    function sup_droit($droit)
+    {
+        $this->secondaires_m->sup_droit($droit);
+        redirect('admin/secondaires_c/');
+    }
+
+    function sup_lieu($lieu)
+    {
+        $this->secondaires_m->sup_lieu($lieu);
+        redirect('admin/secondaires_c/');
+    }
+
+    function sup_origine($origine)
+    {
+        $this->secondaires_m->sup_origine($origine);
+        redirect('admin/secondaires_c/');
+    }
+
+    function sup_semaine($semaine)
+    {
+        $this->secondaires_m->sup_semaine($semaine);
+        redirect('admin/secondaires_c/');
+    }
+
 }
