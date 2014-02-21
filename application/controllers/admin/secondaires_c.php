@@ -15,7 +15,7 @@ class Secondaires_c extends CI_Controller
             'lieux' => $this->secondaires_m->get_lieux(),
             'origines' => $this->secondaires_m->get_origines(),
             'semaines' => $this->secondaires_m->get_semaines(),
-
+            'utilisateurs' => $this->secondaires_m->get_utilisateurs()
         );
 
         $this->load->view('template/admin/content', $data);
@@ -46,5 +46,21 @@ class Secondaires_c extends CI_Controller
         $this->secondaires_m->ajout_semaine($this->input->post('debut'), $this->input->post('fin'));
     }
 
+    public function ajout_utilisateur()
+    {
+        $this->secondaires_m->ajout_utilisateur();
+    }
+
+    public function activer_utilisateur($id)
+    {
+        $this->secondaires_m->activer_utilisateur($id);
+        redirect('admin/secondaires_c/');
+    }
+
+    public function desactiver_utilisateur($id)
+    {
+        $this->secondaires_m->desactiver_utilisateur($id);
+        redirect('admin/secondaires_c/');
+    }
 
 }

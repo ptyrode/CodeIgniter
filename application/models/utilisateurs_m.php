@@ -11,7 +11,7 @@ class Utilisateurs_m extends CI_Model
 
     public function verif_connexion($donnees,&$donnees_resultat) {
         $sql = "SELECT IDdroit, nom, email from utilisateur WHERE nom=\"".$donnees['nom']."\"
-        and passkey=\"".$donnees['passkey']."\";";
+        and passkey=\"" . $donnees['passkey'] . "\" and IDdroit!=3;";
         $query=$this->db->query($sql);
         if($query->num_rows()==1)
         {

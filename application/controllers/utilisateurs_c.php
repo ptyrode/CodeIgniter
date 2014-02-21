@@ -32,7 +32,7 @@ class Utilisateurs_c extends CI_Controller {
                         'nom'=>$this->input->post('nom'),
                         'email'=>$this->input->post('email'),
                         'passkey'=>$this->input->post('passkey'), //$this->encrypt->encode(  ; md5(
-                        'IDdroit'=>1
+                        'IDdroit' => 3
                     );
                     $this->utilisateurs_m->add_user($donnees);
                     // fin d'ajout et redirection
