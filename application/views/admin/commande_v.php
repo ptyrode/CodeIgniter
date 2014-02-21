@@ -35,7 +35,7 @@
                             <td><a href="<?php echo site_url('admin/commandes_c/valid_cmd/' . $c->IDcommande ) ?>">Valider Cmd</a></td>
                         <?php } ?>
 
-                        <td><a href="<?php echo site_url('admin/commandes_c/suppr_cmd/' . $c->IDcommande) ?>">Supprimer</a></td>
+                        <td><a onclick="return confirm('Etes vous sur ?')" href="<?php echo site_url('admin/commandes_c/suppr_cmd/' . $c->IDcommande) ?>">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

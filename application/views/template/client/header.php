@@ -62,7 +62,7 @@
 
                         <li><a href="<?php echo site_url('client/commandes_c/cmd_utilisateur/'.$nomUtil['nom']) ?>">Mes commandes</a></li>
 
-                    <li><a href="#">Autres</a></li>
+
                 </ul>
             </li>
 <!--            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Commandes <b class="caret"></b> </a>-->
@@ -82,7 +82,7 @@
 <!--                </ul>-->
 <!--            </li>-->
             <li><a href="<?php echo site_url('client/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
-          <li><a href="#">Menu 4</a></li>
+          <li><a href="<?php echo site_url('client/contact_c/index/1') ?>">Infos & Contacts</a></li>
         </ul>
       </div>
 

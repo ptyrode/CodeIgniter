@@ -128,7 +128,7 @@ class Commandes_m extends CI_Model {
     function get_all_cmd_from_user($nomUser) {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
 //        $q = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY date_commande DESC");
-        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY date_commande DESC");
+        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY debutSemaineCmd DESC");
 
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {
@@ -212,11 +212,12 @@ class Commandes_m extends CI_Model {
         /*$nb=787;
         if($this->db->query("insert into lieu values (null,'".$nomLieu."')"))
         {*/
+        $nb=0;
             $idlieu = $this->db->query("select IDlieu from lieu where description='".$nomLieu."' limit 1");
             if($idlieu->result_array() == null){
                 $this->db->query("insert into lieu values (null,'".$nomLieu."')");
                 $idlieu = $this->db->query("select IDlieu from lieu where description='".$nomLieu."' limit 1");
-            }
+
 
         foreach ($idlieu->result_array() as $row) //Iterate through results
             {
@@ -225,7 +226,7 @@ class Commandes_m extends CI_Model {
             }
             // Code here after successful insert
         /*}else{*/
-
+        }
         return $nb;
 
     }
@@ -254,6 +255,18 @@ class Commandes_m extends CI_Model {
         return $res1;
 
 
+    }
+
+    function getPrixArticle($idprod){
+        $nb=1;
+        $res = $this->db->query("SELECT prix from produit where IDproduit=".$idprod." limit 1");
+        foreach ($res->result_array() as $row) //Iterate through results
+        {
+            $nb = $row['prix'];
+
+        }
+
+        return $nb;
     }
 }
     

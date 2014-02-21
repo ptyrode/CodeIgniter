@@ -14,7 +14,8 @@ class Client_c extends CI_Controller {
         }
         $donnees = array(
             'contenu' => "client/client_v",
-            'titre' => "Membre de l\'association"
+            'titre' => "Membre de l\'association",
+            'last'
         );
         $this->load->view('template/client/content',$donnees);
     }

@@ -16,42 +16,70 @@ class Commandes_c extends CI_Controller {
 
     public function nouvelle_commande($r){
 
-        $ville = "belfort";
+        //$ville = $this->commandes_m->getVille;
 
-        /*if(date("N") < 3){
+        if(date("N") < 4){ // si lundi ou mardi
+            if(isset($r)){  //si on clique sur "commander" depuis la table des produits
+                $data = array(
+                    'contenu' => "client/nvl_commande_v",
+                    'lieu' => $this->commandes_m->get_dropdown_lieu(),
+                    'recapProd' =>  $this->commandes_m->get_products_type_table(),
+                    'semaine' => $this->commandes_m->get_dropdown_semaine(),
+                    'produits'=> $this->commandes_m->get_dropdown_products(),
+                    'nomUtil'=> $this->session->all_userdata(),
+                    'idprod' => $r,
+                    'debutSemaine' => "oui"
+
+                );
+            }else{ // si on clique sur "nouvelle commande" depuis le menu client
+                $data = array(
+                    'contenu' => "client/nvl_commande_v",
+                    'users' => $this->session->all_userdata(),
+                    'lieu' => $this->commandes_m->get_dropdown_lieu(),
+                    'recapProd' =>  $this->commandes_m->get_products_type_table(),
+                    'semaine' => $this->commandes_m->get_dropdown_semaine(),
+                    'produits'=> $this->commandes_m->get_dropdown_products(),
+                    'nomUtil'=> $this->session->all_userdata(),
+                    'debutSemaine' => "oui"
+
+                );
+            }
+        }else{
             $data = array(
-                'contenu' => "client/nvl_commande_v",
-                'users' => $this->commandes_m->get_dropdown_users(),
-                'lieu' => $this->commandes_m->get_dropdown_lieu(),
-                'semaine' => $this->commandes_m->get_dropdown_semaine(),
-                'produits'=> $this->commandes_m->get_all()
+                'contenu' => "client/client_v",
+                'nomUtil'=> $this->session->all_userdata(),
+                'debutSemaine' => "non"
 
-            );}
-        elseif(date("N")==3){
+            );
+        }
+//        }elseif(date("N")==3){ // si mercredi
+//
+//                //si belfort et si 20h au plus tard
+//                 if(($ville = "belfort") && (date("G")<= 20)){
+//                    $data = array(
+//                        'contenu' => "client/nvl_commande_v",
+//                        'utilisateur' =>$this->produits_m->getuser(),
+//                        'lieu' => $this->produits_m->getlieu(),
+//                        'semaine' => $this->produits_m->getsemaine()
+//                    );
+//                }else
+//                    // si sochaux et 10h au plus tard
+//                    if(($ville = "sochaux") && (date("G")<= 10)){
+//                        $data = array(
+//                            'contenu' => "client/nvl_commande_v",
+//                            'utilisateur' =>$this->produits_m->getuser(),
+//                            'lieu' => $this->produits_m->getlieu(),
+//                            'semaine' => $this->produits_m->getsemaine()
+//
+//                    );
+//                }else{
+//                    $data = array('contenu' => "client/delai_depasse");
+//                }
+//        }  // A activer pour mettre en place le systeme de semaine (ne pas supprimer)
 
-                //si belfort et si 20h au plus tard
-                 if(($ville = "belfort") && (date("G")<= 20)){
-                    $data = array(
-                        'contenu' => "client/nvl_commande_v",
-                        'utilisateur' =>$this->produits_m->getuser(),
-                        'lieu' => $this->produits_m->getlieu(),
-                        'semaine' => $this->produits_m->getsemaine()
-                    );
-                }else
-                    // si sochaux et 10h au plus tard
-                    if(($ville = "sochaux") && (date("G")<= 10)){
-                        $data = array(
-                            'contenu' => "client/nvl_commande_v",
-                            'utilisateur' =>$this->produits_m->getuser(),
-                            'lieu' => $this->produits_m->getlieu(),
-                            'semaine' => $this->produits_m->getsemaine()
 
-                    );
-                }else{
-                    $data = array('contenu' => "client/delai_depasse");
-                }
-        } */ // A activer pour mettre en place le systeme de semaine (ne pas supprimer)
-
+        // reactivez ici pour les test hors date
+/*
         if(isset($r)){  //si on clique sur "commander" depuis la table des produits
             $data = array(
                 'contenu' => "client/nvl_commande_v",
@@ -76,11 +104,11 @@ class Commandes_c extends CI_Controller {
 
             );
         }
+*/
+           // fin ici
 
 
 
-
-       // $data2['idprod'] = $r;
         $this->load->helper('form');
         $this->load->view('template/client/content', $data);
 
@@ -118,8 +146,9 @@ class Commandes_c extends CI_Controller {
 
         $semaine = $_POST['idsemaine']; // normalement plus utile mais vaut mieux garder une securité..
         $idUser = $this->getIdUser();
-        $prixTotal = $this->calculPrixtotalCmd($_POST['qte']);
+        $prixTotal = $this->calculPrixtotalCmd($_POST['qte'],$_POST['idprod']);
         if(isset($_POST['lieuName'])){
+
             $idLieu = $this->commandes_m->ajouterLieu($_POST['lieuName']);
 
             $data = array(
@@ -161,8 +190,12 @@ class Commandes_c extends CI_Controller {
 
     }
 
-    public function calculPrixtotalCmd($nb){
-        return 10;
+    public function calculPrixtotalCmd($nb,$idprod){
+        $prixArticle = $this->commandes_m->getPrixArticle($idprod);
+        $nb = $nb*$prixArticle;
+
+        return $nb;
+
     }
 
     public function mauvaise_semaine(){
