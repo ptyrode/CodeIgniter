@@ -11,7 +11,7 @@ class Commandes_m extends CI_Model {
 
     function get_all_cmd() {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
-        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE ");
+        $q = $this->db->query("SELECT IDcommande,(select designation from up_produit where IDproduit=(select IDproduit from up_a_pour where IDcommande = up_commande.IDcommande)) as nomProd,date_commande,(select date_debut from up_semaine where IDsemaine = up_commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from up_lieu where IDlieu =up_commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from up_a_pour where IDcommande = up_commande.IDcommande ) as validationStatus from up_COMMANDE ");
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {
                 $data[] = $row;
@@ -22,8 +22,8 @@ class Commandes_m extends CI_Model {
 
     function get_all_cmd_in_obj() {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
-        $tags = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,(select nom from utilisateur where IDutilisateur =commande.IDutilisateur)
-        as IDutilisateurDes,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as IDsemaineDes from COMMANDE  ");
+        $tags = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,(select nom from up_utilisateur where IDutilisateur =up_commande.IDutilisateur)
+        as IDutilisateurDes,IDlieu,(select description from up_lieu where IDlieu =up_commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from up_a_pour where IDcommande = up_commande.IDcommande ) as IDsemaineDes from up_COMMANDE  ");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -35,7 +35,7 @@ class Commandes_m extends CI_Model {
     }
     function get_all()
     {
-        $tags = $this->db->query("select distinct * from produit where disponible=1");
+        $tags = $this->db->query("select distinct * from up_produit where disponible=1");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -64,7 +64,7 @@ class Commandes_m extends CI_Model {
 //    }
     function get_dropdown_products()
     {
-        $tags = $this->db->query("select distinct IDproduit,designation from produit where disponible=1 ");
+        $tags = $this->db->query("select distinct IDproduit,designation from up_produit where disponible=1 ");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -76,7 +76,7 @@ class Commandes_m extends CI_Model {
 
     function get_products_type_table()
     {
-       $result = $this->db->query("select distinct code_produit,designation,(select designation from type_prix where IDtype_prix = produit.IDtype_prix) as typePrix from produit where disponible=1 ");
+       $result = $this->db->query("select distinct code_produit,designation,(select designation from up_type_prix where IDtype_prix = up_produit.IDtype_prix) as typePrix from up_produit where disponible=1 ");
         foreach ($result->result() as $row) {
             $data[] = $row;
         }
@@ -88,7 +88,7 @@ class Commandes_m extends CI_Model {
 
     function get_dropdown_users()
     {
-        $tags = $this->db->query("select distinct IDutilisateur,nom from utilisateur ");
+        $tags = $this->db->query("select distinct IDutilisateur,nom from up_utilisateur ");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -99,7 +99,7 @@ class Commandes_m extends CI_Model {
 }
     function get_dropdown_lieu()
     {
-        $tags = $this->db->query("select distinct IDlieu,description from lieu");
+        $tags = $this->db->query("select distinct IDlieu,description from up_lieu");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -111,7 +111,7 @@ class Commandes_m extends CI_Model {
 
     function get_dropdown_semaine()
     {
-        $tags = $this->db->query("select IDsemaine,date_debut,date_fin,valide from semaine where valide='En cours'");
+        $tags = $this->db->query("select IDsemaine,date_debut,date_fin,valide from up_semaine where valide='En cours'");
         $dropdowns = $tags->result();
         foreach ($dropdowns as $dropdown)
         {
@@ -127,7 +127,7 @@ class Commandes_m extends CI_Model {
     function get_all_cmd_from_user($nomUser) {
         // $q = $this->db->select('*')->from('produit')->order_by('IDproduit','desc')->get();
 //        $q = $this->db->query("SELECT IDcommande,date_commande,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY date_commande DESC");
-        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDutilisateur = (select IDutilisateur from utilisateur where nom='".$nomUser."') ORDER BY debutSemaineCmd DESC");
+        $q = $this->db->query("SELECT IDcommande,(select designation from up_produit where IDproduit=(select IDproduit from up_a_pour where IDcommande = up_commande.IDcommande)) as nomProd,date_commande,(select date_debut from up_semaine where IDsemaine = up_commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from up_lieu where IDlieu =up_commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from up_a_pour where IDcommande = up_commande.IDcommande ) as validationStatus from up_COMMANDE where IDutilisateur = (select IDutilisateur from up_utilisateur where nom='".$nomUser."') ORDER BY debutSemaineCmd DESC");
 
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {
@@ -141,7 +141,7 @@ class Commandes_m extends CI_Model {
     }
 
     function verifier_semaine($semaine){
-        $ifSemaineValide = $this->db->query("SELECT valide FROM semaine WHERE IDsemaine =".$semaine);
+        $ifSemaineValide = $this->db->query("SELECT valide FROM up_semaine WHERE IDsemaine =".$semaine);
         foreach ($ifSemaineValide->result_array() as $row) //Iterate through results
         {
             $validite = $row['valide'];
@@ -157,7 +157,7 @@ class Commandes_m extends CI_Model {
     }
 
     function creer_commande($semaine,$data,$data2) {
-        $ifSemaineValide = $this->db->query("SELECT valide FROM semaine WHERE IDsemaine =".$semaine);
+        $ifSemaineValide = $this->db->query("SELECT valide FROM up_semaine WHERE IDsemaine =".$semaine);
         foreach ($ifSemaineValide->result_array() as $row) //Iterate through results
         {
             $validite = $row['valide'];
@@ -168,14 +168,14 @@ class Commandes_m extends CI_Model {
             $this->db->insert('commande', $data);
 
 
-            $nbid = $this->db->query("SELECT IDcommande FROM commande ORDER BY IDcommande DESC limit 1");
+            $nbid = $this->db->query("SELECT IDcommande FROM up_commande ORDER BY IDcommande DESC limit 1");
             foreach ($nbid->result_array() as $row) //Iterate through results
             {
                 $nb = $row['IDcommande'];
             }
 
             // obtenir prix du produit
-            $idproduit = $this->db->query("select prix from produit where produit.IDproduit = ".$data2['IDproduit']);
+            $idproduit = $this->db->query("select prix from up_produit where produit.IDproduit = ".$data2['IDproduit']);
             foreach ($idproduit->result_array() as $row) //Iterate through results
             {
 
@@ -183,7 +183,7 @@ class Commandes_m extends CI_Model {
             }
 
             // obtenir type prix du produit
-            $tprod = $this->db->query("select type_prix.designation from type_prix,produit where produit.IDtype_prix = type_prix.IDtype_prix and  produit.IDproduit= ".$data2['IDproduit']);
+            $tprod = $this->db->query("select type_prix.designation from up_type_prix,up_produit where up_produit.IDtype_prix = up_type_prix.IDtype_prix and  up_produit.IDproduit= ".$data2['IDproduit']);
             foreach ($tprod->result_array() as $row) //Iterate through results
             {
                 $tp = $tprod->row(1);
@@ -191,7 +191,7 @@ class Commandes_m extends CI_Model {
             }
 
             // insertion dans apour
-            $this->db->query("insert into a_pour values (".$nb.",".$data2['IDproduit'].",".$data2['quantite'].",".$prix.",'".$tp."' ,0)");
+            $this->db->query("insert into up_a_pour values (".$nb.",".$data2['IDproduit'].",".$data2['quantite'].",".$prix.",'".$tp."' ,0)");
 
 
 
@@ -212,10 +212,10 @@ class Commandes_m extends CI_Model {
         if($this->db->query("insert into lieu values (null,'".$nomLieu."')"))
         {*/
         $nb=0;
-            $idlieu = $this->db->query("select IDlieu from lieu where description='".$nomLieu."' limit 1");
+            $idlieu = $this->db->query("select IDlieu from up_lieu where description='".$nomLieu."' limit 1");
             if($idlieu->result_array() == null){
-                $this->db->query("insert into lieu values (null,'".$nomLieu."')");
-                $idlieu = $this->db->query("select IDlieu from lieu where description='".$nomLieu."' limit 1");
+                $this->db->query("insert into up_lieu values (null,'".$nomLieu."')");
+                $idlieu = $this->db->query("select IDlieu from up_lieu where description='".$nomLieu."' limit 1");
 
 
         foreach ($idlieu->result_array() as $row) //Iterate through results
@@ -232,7 +232,7 @@ class Commandes_m extends CI_Model {
 
     function get_id_user_for_cmd($nom){
         $nb = 1;
-        $iduser = $this->db->query("select IDutilisateur from utilisateur where nom='".$nom."' limit 1");
+        $iduser = $this->db->query("select IDutilisateur from up_utilisateur where nom='".$nom."' limit 1");
         foreach ($iduser->result_array() as $row) //Iterate through results
         {
             $nb = $row['IDutilisateur'];
@@ -243,14 +243,14 @@ class Commandes_m extends CI_Model {
     }
 //test pour commit
     function validation_cmd($idCmd){
-        $res1 = $this->db->query("UPDATE a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
+        $res1 = $this->db->query("UPDATE up_a_pour SET validationAdmin = 1 WHERE IDcommande =".$idCmd);
 
         return $res1;
     }
 
     function suppression_cmd($idCmd){
-        $this->db->query("DELETE FROM a_pour WHERE IDcommande = ".$idCmd." ");
-        $res1 = $this->db->query("DELETE FROM commande WHERE IDcommande = ".$idCmd." ");
+        $this->db->query("DELETE FROM up_a_pour WHERE IDcommande = ".$idCmd." ");
+        $res1 = $this->db->query("DELETE FROM up_commande WHERE IDcommande = ".$idCmd." ");
         return $res1;
 
 
@@ -258,7 +258,7 @@ class Commandes_m extends CI_Model {
 
     function getPrixArticle($idprod){
         $nb=1;
-        $res = $this->db->query("SELECT prix from produit where IDproduit=".$idprod." limit 1");
+        $res = $this->db->query("SELECT prix from up_produit where IDproduit=".$idprod." limit 1");
         foreach ($res->result_array() as $row) //Iterate through results
         {
             $nb = $row['prix'];
@@ -269,8 +269,8 @@ class Commandes_m extends CI_Model {
     }
 
     function getTableCmdFromLieu($lieu){
-        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
-        $q = $this->db->query("SELECT IDcommande,(select designation from produit where IDproduit=(select IDproduit from a_pour where IDcommande = commande.IDcommande)) as nomProd,date_commande,(select date_debut from semaine where IDsemaine = commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from lieu where IDlieu =commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from a_pour where IDcommande = commande.IDcommande ) as validationStatus from COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
+        $q = $this->db->query("SELECT IDcommande,(select designation from up_produit where IDproduit=(select IDproduit from up_a_pour where IDcommande = up_commande.IDcommande)) as nomProd,date_commande,(select date_debut from up_semaine where IDsemaine = up_commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from up_lieu where IDlieu =up_commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from up_a_pour where IDcommande = up_commande.IDcommande ) as validationStatus from up_COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
+        $q = $this->db->query("SELECT IDcommande,(select designation from up_produit where IDproduit=(select IDproduit from up_a_pour where IDcommande = up_commande.IDcommande)) as nomProd,date_commande,(select date_debut from up_semaine where IDsemaine = up_commande.IDsemaine) as debutSemaineCmd,prix_total,IDutilisateur,IDlieu,(select description from up_lieu where IDlieu =up_commande.IDlieu) as IDlieuDes,IDsemaine,(select validationAdmin from up_a_pour where IDcommande = up_commande.IDcommande ) as validationStatus from up_COMMANDE where IDlieu=".$lieu." ORDER BY debutSemaineCmd DESC");
 
         if ($q->num_rows()>0) {
             foreach ($q->result() as $row) {

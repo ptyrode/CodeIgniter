@@ -9,9 +9,9 @@
         <form method="POST" action="<?php echo site_url('admin/produits_c/ajouter_produit/') ?>">
             <label>Description : </label><input class="form-control" type="text" name="designation"/><br/>
             <label>Commentaire : </label><input class="form-control" type="text" name="commentaire"/><br/>
-            <label>Prix : </label><input class="form-control" type="text" name="prix"/><br/>
-            <label>Code produit(balance) : </label><input class="form-control" type="text" name="codeproduit"/><br/>
-            <label>Disponible : </label><input class="form-control" type="text" name="disponible"/><br/>
+            <label>Prix : </label><input class="form-control" type="number" name="prix"/><br/>
+            <label>Code produit(balance) : </label><input class="form-control" type="number" name="codeproduit"/><br/>
+            <label>Disponible (0 ou 1) : </label><input class="form-control" type="number" name="disponible"/><br/>
 
             <label>Type prix : </label><select class="form-control"  name="idtypeprix" >
 

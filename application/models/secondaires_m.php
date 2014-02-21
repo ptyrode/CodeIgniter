@@ -13,7 +13,7 @@ class Secondaires_m extends CI_Model
 
     function get_categories()
     {
-        $q = $this->db->query('select * from categorie');
+        $q = $this->db->query('select * from up_categorie');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -25,7 +25,7 @@ class Secondaires_m extends CI_Model
 
     function get_droits()
     {
-        $q = $this->db->query('select * from droit');
+        $q = $this->db->query('select * from up_droit');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -37,7 +37,7 @@ class Secondaires_m extends CI_Model
 
     function get_lieux()
     {
-        $q = $this->db->query('select * from lieu');
+        $q = $this->db->query('select * from up_lieu');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -49,7 +49,7 @@ class Secondaires_m extends CI_Model
 
     function get_origines()
     {
-        $q = $this->db->query('select * from origine');
+        $q = $this->db->query('select * from up_origine');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -61,7 +61,7 @@ class Secondaires_m extends CI_Model
 
     function get_semaines()
     {
-        $q = $this->db->query('select * from semaine');
+        $q = $this->db->query('select * from up_semaine');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -74,7 +74,7 @@ class Secondaires_m extends CI_Model
 
     function get_utilisateurs()
     {
-        $q = $this->db->query('select * from utilisateur');
+        $q = $this->db->query('select * from up_utilisateur');
         //$q = $this->db->select('*')->from('origine')->where('IDorigine',!$ido)->order_by('IDorigine','asc')->get();
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {
@@ -86,25 +86,25 @@ class Secondaires_m extends CI_Model
 
     function ajout_categorie($categorie)
     {
-        $sql = "INSERT INTO categorie VALUES (NULL,\"" . $categorie . "\");";
+        $sql = "INSERT INTO up_categorie VALUES (NULL,\"" . $categorie . "\");";
         $this->db->query($sql);
     }
 
     function ajout_droit($droit)
     {
-        $sql = "INSERT INTO droit VALUES (NULL,\"" . $droit . "\");";
+        $sql = "INSERT INTO up_droit VALUES (NULL,\"" . $droit . "\");";
         $this->db->query($sql);
     }
 
     function ajout_lieu($lieu)
     {
-        $sql = "INSERT INTO lieu VALUES (NULL,\"" . $lieu . "\");";
+        $sql = "INSERT INTO up_lieu VALUES (NULL,\"" . $lieu . "\");";
         $this->db->query($sql);
     }
 
     function ajout_origine($origine)
     {
-        $sql = "INSERT INTO origine VALUES (NULL,\"" . $origine . "\");";
+        $sql = "INSERT INTO up_origine VALUES (NULL,\"" . $origine . "\");";
         $this->db->query($sql);
     }
 
@@ -112,55 +112,55 @@ class Secondaires_m extends CI_Model
     {
         $debut = date('Y-m-d', strtotime($debut));
         $fin = date('Y-m-d', strtotime($fin));
-        $sql = "INSERT INTO semaine VALUES (NULL,\"" . $debut . "\",\"" . $fin . "\",'En cours');";
+        $sql = "INSERT INTO up_semaine VALUES (NULL,\"" . $debut . "\",\"" . $fin . "\",'En cours');";
         $this->db->query($sql);
     }
 
     function ajout_utilisateur($nom, $passkey, $email, $droit)
     {
-        $sql = "INSERT INTO utilisateur VALUES (NULL,\"" . $nom . "\",\"" . $passkey . "\",\"" . $email . "\",\"" . $droit . "\");";
+        $sql = "INSERT INTO up_utilisateur VALUES (NULL,\"" . $nom . "\",\"" . $passkey . "\",\"" . $email . "\",\"" . $droit . "\");";
         $this->db->query($sql);
     }
 
     public function activer_utilisateur($id)
     {
-        $sql = "UPDATE utilisateur SET IDdroit=2 WHERE IDutilisateur=\"" . $id . "\"";
+        $sql = "UPDATE up_utilisateur SET IDdroit=2 WHERE IDutilisateur=\"" . $id . "\"";
         $this->db->query($sql);
     }
 
     public function desactiver_utilisateur($id)
     {
-        $sql = "UPDATE utilisateur SET IDdroit=3 WHERE IDutilisateur=\"" . $id . "\"";
+        $sql = "UPDATE up_utilisateur SET IDdroit=3 WHERE IDutilisateur=\"" . $id . "\"";
         $this->db->query($sql);
     }
 
     function sup_categorie($categorie)
     {
-        $sql = "DELETE FROM categorie WHERE IDcategorie=\"" . $categorie . "\"";
+        $sql = "DELETE FROM up_categorie WHERE IDcategorie=\"" . $categorie . "\"";
         $this->db->query($sql);
     }
 
     function sup_droit($droit)
     {
-        $sql = "DELETE FROM droit WHERE IDdroit=\"" . $droit . "\"";
+        $sql = "DELETE FROM up_droit WHERE IDdroit=\"" . $droit . "\"";
         $this->db->query($sql);
     }
 
     function sup_lieu($lieu)
     {
-        $sql = "DELETE FROM lieu WHERE IDlieu=\"" . $lieu . "\"";
+        $sql = "DELETE FROM up_lieu WHERE IDlieu=\"" . $lieu . "\"";
         $this->db->query($sql);
     }
 
     function sup_origine($origine)
     {
-        $sql = "DELETE FROM origine WHERE IDorigine\"" . $origine . "\"";
+        $sql = "DELETE FROM up_origine WHERE IDorigine\"" . $origine . "\"";
         $this->db->query($sql);
     }
 
     function sup_semaine($semaine)
     {
-        $sql = "DELETE FROM semaine WHERE IDsemaine=\"" . $semaine . "\"";
+        $sql = "DELETE FROM up_semaine WHERE IDsemaine=\"" . $semaine . "\"";
         $this->db->query($sql);
     }
 }

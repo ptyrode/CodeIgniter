@@ -4,13 +4,13 @@ class Utilisateurs_m extends CI_Model
 {
 
     public function add_user($donnees) {
-        $sql = "INSERT INTO utilisateur VALUES (NULL,\"".$donnees['nom']."\",\"".$donnees['passkey']."\",\"".$donnees['email']."\"
+        $sql = "INSERT INTO up_utilisateur VALUES (NULL,\"".$donnees['nom']."\",\"".$donnees['passkey']."\",\"".$donnees['email']."\"
         ,\"".$donnees['IDdroit']."\");";
         $this->db->query($sql);
     }
 
     public function verif_connexion($donnees,&$donnees_resultat) {
-        $sql = "SELECT IDdroit, nom, email from utilisateur WHERE nom=\"".$donnees['nom']."\"
+        $sql = "SELECT IDdroit, nom, email from up_utilisateur WHERE nom=\"".$donnees['nom']."\"
         and passkey=\"" . $donnees['passkey'] . "\" and IDdroit!=3;";
         $query=$this->db->query($sql);
         if($query->num_rows()==1)
@@ -34,7 +34,7 @@ class Utilisateurs_m extends CI_Model
     }
 
     public function test_email($email) {
-        $sql = "SELECT email from utilisateur WHERE email=\"".$email."\";";
+        $sql = "SELECT email from up_utilisateur WHERE email=\"".$email."\";";
         $query=$this->db->query($sql);
         if($query->num_rows()>=1)
             return true;
@@ -43,7 +43,7 @@ class Utilisateurs_m extends CI_Model
     }
 
     public function test_login($login) {
-        $sql = "SELECT nom from utilisateur WHERE nom=\"".$login."\";";
+        $sql = "SELECT nom from up_utilisateur WHERE nom=\"".$login."\";";
         $query=$this->db->query($sql);
         if($query->num_rows()>=1)
             return true;
@@ -53,7 +53,7 @@ class Utilisateurs_m extends CI_Model
 
     public function modifier_mdp($mdp, $email)
     {
-        $sql = "UPDATE utilisateur SET passkey=\"" . $mdp . "\" WHERE email=\"" . $email . "\"";
+        $sql = "UPDATE up_utilisateur SET passkey=\"" . $mdp . "\" WHERE email=\"" . $email . "\"";
         $this->db->query($sql);
     }
 }

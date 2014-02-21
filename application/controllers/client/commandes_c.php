@@ -190,6 +190,27 @@ class Commandes_c extends CI_Controller {
 
     }
 
+    public function  nouvelle_commande_group(){
+        $data['contenu'] = "client/nvl_commande_group";
+        $data['produits'] = $this->produits_m->get_all();
+
+
+
+        $this->load->view('template/admin/content', $data);
+
+    }
+
+    public function ajouter_commande_group(){
+        if(isset($_POST['valider'])){
+            foreach($_POST as $index=>$valeur){
+                echo '- '.$index.' : '.$valeur.'<br/>';
+            }
+        }
+        foreach($_POST as $index=>$valeur){
+            echo '- '.$valeur.'<br/>';
+        }
+    }
+
     public function calculPrixtotalCmd($nb,$idprod){
         $prixArticle = $this->commandes_m->getPrixArticle($idprod);
         $nb = $nb*$prixArticle;

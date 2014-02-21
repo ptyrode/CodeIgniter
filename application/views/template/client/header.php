@@ -81,8 +81,17 @@
 <!--                    <li><a href="#">Autres</a></li>-->
 <!--                </ul>-->
 <!--            </li>-->
-            <li><a href="<?php echo site_url('client/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
-          <li><a href="<?php echo site_url('client/contact_c/index/1') ?>">Infos & Contacts</a></li>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Produits & Commandes <b class="caret"></b> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="<?php echo site_url('client/commandes_c/nouvelle_commande/1') ?>">Nouvelle commande</a></li>
+                    <li class="divider"></li>
+
+                    <li><a href="<?php echo site_url('client/commandes_c/nouvelle_commande_group/') ?>">Nouvelle commande groupée</a></li>
+
+
+                </ul>
+
+                    <li><a href="<?php echo site_url('client/contact_c/index/1') ?>">Infos & Contacts</a></li>
         </ul>
       </div>
 
