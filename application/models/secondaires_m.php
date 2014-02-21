@@ -116,9 +116,10 @@ class Secondaires_m extends CI_Model
         $this->db->query($sql);
     }
 
-    function ajout_utilisateur()
+    function ajout_utilisateur($nom, $passkey, $email, $droit)
     {
-
+        $sql = "INSERT INTO utilisateur VALUES (NULL,\"" . $nom . "\",\"" . $passkey . "\",\"" . $email . "\",\"" . $droit . "\");";
+        $this->db->query($sql);
     }
 
     public function activer_utilisateur($id)

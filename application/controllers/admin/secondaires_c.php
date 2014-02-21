@@ -48,7 +48,7 @@ class Secondaires_c extends CI_Controller
 
     public function ajout_utilisateur()
     {
-        $this->secondaires_m->ajout_utilisateur();
+        $this->secondaires_m->ajout_utilisateur($this->input->post('nom'), $this->input->post('passkey'), $this->input->post('email'), $this->input->post('droit'));
     }
 
     public function activer_utilisateur($id)
