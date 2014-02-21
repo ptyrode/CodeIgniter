@@ -8,6 +8,7 @@
     <li><a href="#lieu" data-toggle="tab">Lieux</a></li>
     <li><a href="#origine" data-toggle="tab">Origines</a></li>
     <li><a href="#semaine" data-toggle="tab">Semaines</a></li>
+    <li><a href="#utilisateur" data-toggle="tab">Utilisateurs</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -19,10 +20,14 @@
                     <table class="table table-striped table-hover table-bordered" id="tableCategorie">
                         <th>Identifiant</th>
                         <th>Description</th>
+                        <th>Action</th>
                         <?php foreach ($categories as $c): ?>
                             <tr>
                                 <td><?= $c->IDcategorie ?></td>
                                 <td><?= $c->description ?></td>
+                                <td>
+                                    <a href="<?php echo site_url('admin/secondaires_c/sup_categorie/' . $c->IDcategorie) ?>">Supprimer</a>
+                                </td>
 
                                 <!--                                <td><a href="-->
                                 <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
@@ -36,7 +41,6 @@
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalCategorie">Nouveau
                     </button>
                 <?php endif; ?>
-
             </div>
         </div>
     </div>
@@ -48,10 +52,13 @@
                     <table class="table table-striped table-hover table-bordered" id="tableDroit">
                         <th>Identifiant</th>
                         <th>Description</th>
+                        <th>Action</th>
                         <?php foreach ($droits as $d): ?>
                             <tr>
                                 <td><?= $d->IDdroit ?></td>
                                 <td><?= $d->description ?></td>
+                                <td><a href="<?php echo site_url('admin/secondaires_c/sup_droit/' . $d->IDdroit) ?>">Supprimer</a>
+                                </td>
 
                                 <!--                                <td><a href="-->
                                 <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
@@ -64,7 +71,6 @@
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalDroit">Nouveau
                     </button>
                 <?php endif; ?>
-
             </div>
         </div>
     </div>
@@ -76,10 +82,13 @@
                     <table class="table table-striped table-hover table-bordered" id="tableLieu">
                         <th>Identifiant</th>
                         <th>Description</th>
+                        <th>Action</th>
                         <?php foreach ($lieux as $l): ?>
                             <tr>
                                 <td><?= $l->IDlieu ?></td>
                                 <td><?= $l->description ?></td>
+                                <td><a href="<?php echo site_url('admin/secondaires_c/sup_lieu/' . $l->IDlieu) ?>">Supprimer</a>
+                                </td>
 
                                 <!--                                <td><a href="-->
                                 <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
@@ -92,7 +101,6 @@
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalLieu">Nouveau
                     </button>
                 <?php endif; ?>
-
             </div>
         </div>
     </div>
@@ -104,10 +112,14 @@
                     <table class="table table-striped table-hover table-bordered" id="tableOrigine">
                         <th>Identifiant</th>
                         <th>Description</th>
+                        <th>Action</th>
                         <?php foreach ($origines as $o): ?>
                             <tr>
                                 <td><?= $o->IDorigine ?></td>
                                 <td><?= $o->description ?></td>
+                                <td>
+                                    <a href="<?php echo site_url('admin/secondaires_c/sup_origine/' . $o->IDorigine) ?>">Supprimer</a>
+                                </td>
 
                                 <!--                                <td><a href="-->
                                 <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
@@ -120,7 +132,6 @@
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalOrigine">Nouveau
                     </button>
                 <?php endif; ?>
-
             </div>
         </div>
     </div>
@@ -134,12 +145,17 @@
                         <th>Date de debut</th>
                         <th>Date de fin</th>
                         <th>Valide</th>
+                        <th>Action</th>
                         <?php foreach ($semaines as $s): ?>
                             <tr>
                                 <td><?= $s->IDsemaine ?></td>
                                 <td><?= date('d-m-Y', strtotime($s->date_debut)) ?></td>
                                 <td><?= date('d-m-Y', strtotime($s->date_fin)) ?></td>
                                 <td><?= $s->valide ?></td>
+                                <td>
+                                    <a href="<?php echo site_url('admin/secondaires_c/sup_semaine/' . $s->IDsemaine) ?>">Supprimer</a>
+                                </td>
+
 
                                 <!--                                <td><a href="-->
                                 <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
@@ -152,9 +168,50 @@
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalSemaine">Nouveau
                     </button>
                     <!--                    <a data-toggle="modal" href="index.html" data-target="#modal">Click me</a>-->
-
                 <?php endif; ?>
+            </div>
+        </div>
+    </div>
 
+    <div class="tab-pane fade" id="utilisateur">
+        <div class="container" id="body">
+            <div class="row">
+                <?php if ($utilisateurs != null): ?><br/><br/>
+                    <table class="table table-striped table-hover table-bordered" id="tableUtilisateur">
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                        <th>Mot de passe</th>
+                        <th>Email</th>
+                        <th>Droit</th>
+
+                        <!--                    -->
+                        <?php foreach ($utilisateurs as $u): ?>
+                            <tr>
+                                <td><?= $u->IDutilisateur ?></td>
+                                <td><?= $u->nom ?></td>
+                                <td><?= $u->passkey ?></td>
+                                <td><?= $u->email ?></td>
+                                <td><?= $u->IDdroit ?></td>
+                                <?php if ($u->IDdroit == 3) { ?>
+                                    <td>
+                                        <a href="<?php echo site_url('admin/secondaires_c/activer_utilisateur/' . $u->IDutilisateur) ?>">Activer</a>
+                                    </td>
+                                <?php } else if ($u->IDdroit == 2) { ?>
+                                    <td>
+                                        <a href="<?php echo site_url('admin/secondaires_c/desactiver_utilisateur/' . $u->IDutilisateur) ?>">Désactiver</a>
+                                    </td>
+                                <?php } ?>
+                                <!--                                <td><a href="-->
+                                <?php //echo site_url('admin/produits_c/modif_produit/' . $r->IDproduit.'/'.$r->IDtype_prix.'/'.$r->IDorigine.'/'.$r->IDcategorie ) ?><!--">Modifier</a></td>-->
+                                <!--                                <td><a href="-->
+                                <?php //echo site_url('admin/produits_c/suppr_produit/' . $r->IDproduit) ?><!--">Supprimer</a></td>-->
+                            </tr>
+                        <?php endforeach;
+                        $var = 'utilisateur';?>
+                    </table>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalUtilisateur">Nouveau
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -352,6 +409,54 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModalUtilisateur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Ajout d'un utilisateur</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="inputNom" class="col-sm-2 control-label">Nom:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputNom" placeholder="">
+                        </div>
+                        <label for="inputPasskey" class="col-sm-2 control-label">Mdp:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPasskey" placeholder="">
+                        </div>
+
+                        <label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="">
+                        </div>
+
+                        <label for="inputDroit" class="col-sm-2 control-label">Droit:</label>
+
+                        <div class="col-sm-10">
+                            <select class="form-control" id="inputDroit">
+                                <option value="1">Admin</option>
+                                <option value="2">Client activé</option>
+                                <option value="3">Client désactivé</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" onclick="ajoutUtilisateur();">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     //called when user clicks login
 
@@ -470,6 +575,60 @@
             }
         });
         $("#myModalSemaine").modal("hide");
+        return false;
+    }
+
+    function ajoutUtilisateur() {
+        var form_data = {
+            nom: $('#inputNom').val(),
+            passkey: $('#inputPasskey').val(),
+            email: $('#inputEmail').val(),
+            droit: $('#inputDroit option:checked').val()
+            //password : $('.password').val(),
+            //ajax : '1'
+        };
+        $.ajax({
+            url: "<?php echo site_url('admin/secondaires_c/ajout_utilisateur'); ?>",
+            type: 'POST',
+            async: false,
+            data: form_data,
+            success: function (msg) {
+                var id = document.getElementById('tableUtilisateur').rows.length;
+
+                if ($('#inputDroit option:checked').val() == 2) {
+                    $("#tableUtilisateur").append('<tr>'
+                        + '<td>' + id + '</td>'
+                        + '<td>' + $('#inputNom').val() + '</td>'
+                        + '<td>' + $('#inputPasskey').val() + '</td>'
+                        + '<td>' + $('#inputEmail').val() + '</td>'
+                        + '<td>' + $('#inputDroit option:checked').val() + '</td>'
+                        + '<td><a href="<?php echo site_url('admin/secondaires_c/desactiver_utilisateur/') ?>">Désactiver</a></td>'
+                        + '</tr>');
+                }
+                else if ($('#inputDroit option:checked').val() == 3) {
+                    $("#tableUtilisateur").append('<tr>'
+                        + '<td>' + id + '</td>'
+                        + '<td>' + $('#inputNom').val() + '</td>'
+                        + '<td>' + $('#inputPasskey').val() + '</td>'
+                        + '<td>' + $('#inputEmail').val() + '</td>'
+                        + '<td>' + $('#inputDroit option:checked').val() + '</td>'
+                        + '<td><a href="<?php echo site_url('admin/secondaires_c/activer_utilisateur/') ?>">Activer</a></td>'
+                        + '</tr>');
+                }
+                else {
+                    $("#tableUtilisateur").append('<tr>'
+                        + '<td>' + id + '</td>'
+                        + '<td>' + $('#inputNom').val() + '</td>'
+                        + '<td>' + $('#inputPasskey').val() + '</td>'
+                        + '<td>' + $('#inputEmail').val() + '</td>'
+                        + '<td>' + $('#inputDroit option:checked').val() + '</td>'
+                        + '<td></td>'
+                        + '</tr>');
+                }
+
+            }
+        });
+        $("#myModalUtilisateur").modal("hide");
         return false;
     }
 
